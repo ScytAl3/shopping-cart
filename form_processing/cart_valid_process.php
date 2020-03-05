@@ -6,7 +6,7 @@
     session_start();
 
     // recuperation de l identifiant de l utilisateur
-    $userCartId = $_SESSION['current_userTemp'];
+    $userCartId = $_SESSION['current_Id'];
     //  --------------------------------------------------//--------------------------------------------------
     //                                          Creation du panier dans la table 
     //  --------------------------------------------------//--------------------------------------------------

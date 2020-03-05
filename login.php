@@ -4,25 +4,14 @@ session_start ();
 // ----------------------------//---------------------------
 //                  variables de session
 // ---------------------------------------------------------
-// autorisation du cookie
-$_SESSION['rememberMe'] = (isset($_SESSION['rememberMe'])) ? $_SESSION['rememberMe'] : false;
-// utilisateur valide en cours de session
-$_SESSION['current_Session'] = (isset($_SESSION['current_Session'])) ? $_SESSION['current_Session'] : false;
-// peudo de l utilisateur connecte en cours de session
-$_SESSION['current_Pseudo']  =  (isset($_SESSION['current_Pseudo'])) ? $_SESSION['current_Pseudo'] : '';
-// role utilisateur en cours de session
-$_SESSION['current_Role'] = (isset($_SESSION['current_Role'])) ? $_SESSION['current_Role'] : 'Default';
-// identifiant de l admin
-$_SESSION['current_Id'] = (isset($_SESSION['current_Id'])) ? $_SESSION['current_Id'] : false;
-// ------------------//------------------------
-//      messages d erreur de login
+//----------------------------//----------------------------
+//                     ERROR MANAGEMENT
 $_SESSION['error']['page'] = (isset($_SESSION['error']['page'])) ? $_SESSION['error']['page'] : 'login';
 $_SESSION['error']['show'] = ((isset($_SESSION['error']['show'])) && ($_SESSION['error']['page'] =='login')) ? $_SESSION['error']['show'] : false;
 $_SESSION['error']['message'] = ((isset($_SESSION['error']['message'])) && ($_SESSION['error']['page'] =='login')) ? $_SESSION['error']['message'] :  '';
 $_SESSION['error']['page'] = 'login';
-
-//     messages d erreur de login
-// ------------------//------------------------
+//                     ERROR MANAGEMENT
+//----------------------------//----------------------------
 // on détruit les variables inutiles des autres pages
 unset($_SESSION['signupForm']);
 unset ($_SESSION['showErrorAction'], $_SESSION['errorMsgAction']);
@@ -68,7 +57,7 @@ unset ($_SESSION['showErrorCreate'], $_SESSION['errorMsgCreate']);
 
                         <!-- titre de la section du formulaire -->
                         <div class="text-center mx-auto">
-                            <h2 class="display-4 font-weight-bold text-muted">Accéder aux actualités</h2>                       
+                            <h2 class="display-4 font-weight-bold text-muted">Veuillez vous connecter</h2>                       
                             <!-- area pour afficher un message d erreur lors d un mauvais login : pseudo inexistant ou erreud password -->
                             <div class="show-bg<?=($_SESSION['error']['show']) ? '' : 'visible'; ?> text-center mt-5">
                                 <p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
@@ -81,22 +70,17 @@ unset ($_SESSION['showErrorCreate'], $_SESSION['errorMsgCreate']);
                                                         debut du container du formulaire de login
                         ---------------------------------------------------------------------------------------------->
                         <div class="<?=($_SESSION['current_Session'])? 'invisible' : 'visible' ; ?>">
-                            <form class="form-signin" method="POST" action="forms_processing/login_process.php">
+                            <form class="form-signin" method="POST" action="form_processing/login_process.php">
                                 <!-- email input -->
                                 <div class="input-group margin-bottom-sm">
-                                    <input class="form-control fa fa-qq" type="text" name="pseudo" id="pseudo" placeholder="&#xf1d6; Votre pseudo"  required autofocus="">
+                                    <input class="form-control fa fa-envelope" type="text" name="email" id="email" placeholder="&#xf0e0; Votre adresse email"  required autofocus="">
                                 </div>
+
                                 <!-- password input -->
                                 <div class="input-group">
                                     <input class="form-control fa fa-key" type="password" name="password" id="password" placeholder="&#xf084; Password" required>
                                 </div>
-                                <!-- remember me checkbox -->
-                                <div class="checkbox mb-3">
-                                    <input type="checkbox" class="form-check-input" name="rememberMe" id="rememberMe" value="rememberMe">
-                                    <label class="form-check-label" for="rememberMe">
-                                        Remember me
-                                    </label>
-                                </div>
+
                                 <!-- buttons -->
                                 <div class="mb-3">
                                     <button class="btn btn-primary btn-lg btn-block" type="submit">LOGIN</button>

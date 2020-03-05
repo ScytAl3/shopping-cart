@@ -100,6 +100,11 @@ function createUser($userData) {
 // ----------------------------------------------------------------------
 //      fonction pour renvoyer la liste des produits
 // ----------------------------------------------------------------------
+/**
+ *  renvoie un tableau de la liste des produits
+ * 
+ * @return Mixed    retourne un tableau de donnees - sinon FALSE si aucun resultat pour la requete
+ */
 function allProductReader() {
     // on instancie une connexion
     $pdo = my_pdo_connexxion();   
@@ -111,6 +116,8 @@ function allProductReader() {
                                             i.pictureFilename AS picture
                             FROM `produits` p
                             INNER JOIN pictures i ON i.produitsId = p.produitsId
+                            WHERE p.produitsQuantite > 0
+                            AND p.produitavailable = 1
                             GROUP BY p.produitsId
                             ORDER BY p.created_at DESC";   
     // preparation de la requete pour execution

@@ -148,7 +148,7 @@ function verifyPanier($id_product) {
  * @param String     $id_product numéro d identification du produit a supprimer 
  * @param Boolean    $reindex : facultatif, par défaut, vaut true pour ré-indexer le tableau après 
  *                                  suppression. On peut envoyer false si cette ré-indexation n'est pas nécessaire. 
- * @return Mixed     Retourne TRUE si la suppression a bien ete effectuee - FALSE sinon - "absent" si 
+ * @return Mixed     retourne TRUE si la suppression a bien ete effectuee - FALSE sinon - "absent" si 
  *                                  le produit a deja ete retire du panier 
  */
 function deleteProduct($id_product, $reindex = true) {

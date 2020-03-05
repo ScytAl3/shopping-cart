@@ -11,3 +11,11 @@
 .logout-button {
     width: 50px;
 }
+
+.my-header-bg {
+    height: 50vh;
+    min-height: 500px;
+    background-image: url('/img/default/bar-beer.jpg');
+    background-size: cover;
+    color: darkgoldenrod;
+}

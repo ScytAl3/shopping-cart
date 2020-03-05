@@ -11,14 +11,14 @@ USE db_gestion_panier;
 #------------------------------------------------------------
 
 CREATE TABLE users (
-    userId                     int                       not null  Auto_increment,
-    userLastName        varchar(75)         not null,
-    userFirstName       varchar(75)         not null, 
-    userEmail               varchar(100)       not null,
-    userPassword         varchar(255)         not null,
-    userSalt                    varchar(255)         not null,
-    accountCreated_at               datetime     not null,
-    userRole                varchar(20)             not null DEFAULT 'Default',
+    userId                          int                       not null  Auto_increment,
+    userLastName            varchar(75)         not null,
+    userFirstName           varchar(75)         not null, 
+    userEmail                   varchar(100)       not null,
+    userPassword            varchar(255)         not null,
+    userSalt                      varchar(255)         not null,
+    accountCreated_at       datetime     not null,
+    userRole                    varchar(20)             not null  DEFAULT 'Member',
     CONSTRAINT users_PK PRIMARY KEY (userId),
     UNIQUE KEY unique_email (userEmail)
 ) ENGINE=InnoDB;
@@ -34,6 +34,7 @@ CREATE TABLE produits (
     produitsQuantite                int                     not null,
     produitsPrix                        decimal(5, 2) not null,
     created_at                       datetime               not null,
+    produitavailable                boolean             not null DEFAULT 1,
     CONSTRAINT produits_PK PRIMARY KEY (produitsId)
 ) ENGINE=InnoDB;
 
@@ -86,10 +87,10 @@ INSERT INTO
 VALUES 
     ('Doe', 'John', 'j.doe@cci.fr', '54e4feb636204d1e5fcf49fb202946db', 'b7c8cb5b20beb2733470a65bb59722de', '2020-02-20 13:29:09', 'Admin'),              -- az3rty
     ( 'Jobs', 'Steve', 'amazing@rip.com', '1f1c153c6717024f825a862901f9c3bc', '476e62fcde5fcaa1e7fc2629da120ce9', '2020-02-20 15:29:09', 'Admin'),                  -- 4pple 
-    ('Tuttle', 'Archibald', 'harry.tuttle@br.com', '78169d67d449272b6bad1438b75bf4fe', '1641b4d0b9a50afbadb3cedf983c9cd1', '2020-02-21 16:25:49', DEFAULT),    -- Ninj4
-    ('Bismuth', 'Paul', 'ns-2017@lr.fr', 'b4f56e6dca3905a5b3f4e73058ba2ab2', '5e406044172b4831cf110e63b51f0b47', '2020-02-22 19:15:25', DEFAULT),                   -- Sark0
-    ('Balkany', 'Patrick', 'la-sante@gouv.fr', '4fcf95ce8284291469466c0b2aecaed8', '61a722aee2cc2e539778622bc7ee7c4d', '2020-02-22 21:09:27', DEFAULT),             -- money
-    ('Abagnale', 'Frank', 'catch.me@noop.fr', 'a87f2462177f71232e05bd00f68675ef', '5d969f98d53259fe94d0245eb8d3ac26', '2020-02-22 12:04:49', DEFAULT);          -- c4tchM3
+    ('Tuttle', 'Archibald', 'harry.tuttle@br.com', '78169d67d449272b6bad1438b75bf4fe', '1641b4d0b9a50afbadb3cedf983c9cd1', '2020-02-21 16:25:49', 'Member'),    -- Ninj4
+    ('Bismuth', 'Paul', 'ns-2017@lr.fr', 'b4f56e6dca3905a5b3f4e73058ba2ab2', '5e406044172b4831cf110e63b51f0b47', '2020-02-22 19:15:25', 'Member'),                   -- Sark0
+    ('Balkany', 'Patrick', 'la-sante@gouv.fr', '4fcf95ce8284291469466c0b2aecaed8', '61a722aee2cc2e539778622bc7ee7c4d', '2020-02-22 21:09:27', 'Member'),             -- money
+    ('Abagnale', 'Frank', 'catch.me@noop.fr', 'a87f2462177f71232e05bd00f68675ef', '5d969f98d53259fe94d0245eb8d3ac26', '2020-02-22 12:04:49', 'Member');          -- c4tchM3
 
 #-----------------------------------------------------------
 # Table: Produits - Data
@@ -111,10 +112,10 @@ VALUES
 INSERT INTO
     pictures(`produitsId`,`pictureFilename`)
 VALUES
-    (1, null),
-    (2, null),
-    (3, null),
-    (4, null),
-    (5, null),
-    (6, null),
-    (7, null);
+    (1, 'affligem.png'),
+    (2, 'asahi.png'),
+    (3, 'budweiser.png'),
+    (4, 'fosters.png'),
+    (5, 'guinness.png'),
+    (6, 'heineken.png'),
+    (7, 'pelforth.png');

@@ -49,7 +49,7 @@ $_SESSION['error']['page'] = 'panier';
         <?php include 'includes/header.php'; ?>
         <!-- /import du header -->
         <!--------------------------------------//------------------------------------------------
-                        debut du container pour afficher la page du panier
+                                container pour afficher la page du panier
         ------------------------------------------------------------------------------------------>           
         <div class="mt-5 container"> 
 
@@ -64,18 +64,15 @@ $_SESSION['error']['page'] = 'panier';
                     <!-- /area pour afficher un message d erreur lors du login -->
                 </div>
                 <!-- /titre de la page de presentation des produits -->
-            </div>
-           
-            <!---------------------------------//---------------------------------------------
-                    debut de la section pour afficher les produits dans le panier
-            ---------------------------------------------------------------------------------->
+            </div>           
+            
             <?php                
                 // on appelle la fonction qui calcule le nombre total de produit dans le panier
                 $quantiteTotale = quantite_produit_panier();
                 // on appelle la fonction qui calcule le montant du panier
                 $montantTotal = montant_panier();
                 //  --------------------------------------------------//--------------------------------------------------
-                //  debut script php pour recuperer toutes les informations des produits dans le panier
+                //          script php pour recuperer toutes les informations des produits dans le panier
                 //  ------------------------------------------------------------------------------------------------------
                 // on compte le nombre de produits differents dans le panier 
                 $productCount = count($_SESSION['panier']['id_product']);
@@ -84,63 +81,83 @@ $_SESSION['error']['page'] = 'panier';
                 //
                 // on parcours chaque sous tableaux du panier pour recuperer les informations associees a un meme produit a chaque iteration 
                 for ($i = 0; $i < $productCount; $i++) { 
-                    // on recupere l identifiant du produit
+                    // identifiant du produit dans le panier - iteration
                     $productId = $_SESSION['panier']['id_product'][$i];
-                    // appelle de la fonction pour renvoyer les informations du produit courant
+                    // appelle de la fonction pour renvoyer les informations supplementaire du produit
                     $myProduct = productReader($productId);
-                    // recuperation de l image et du nom du produit et de la quantite en stock
+                    // image du produit
                     $productPicture = $myProduct['picture'];
+                    // nom du produit
                     $productName = $myProduct['produitName'];
+                    // quantite en stock du produit
                     $productStock = $myProduct['produitQuantite'];
-                    // on continue de parcourir le panier pour recuperer le reste des information
+                    // quantite commandee dans la panier - iteration
                     $productQuantity = $_SESSION['panier']['qte_product'][$i];
-                    $productPrice = $_SESSION['panier']['prix'][$i];                    
+                    // prix unitaire du produit - iteration
+                    $productPrice = $_SESSION['panier']['prix'][$i];    
+                    // calcul du prix total du produit en fonction de la quantite
+                    $productTotalPrice =  $productPrice * $productQuantity;        
             ?>
-                <!-- -->                
+                <!----------------------------------//---------------------------------------------
+                                    section pour afficher les produits du panier
+                ---------------------------------------------------------------------------------->               
                 <div class="row card-header text-white bg-info mb-3">
                     <!-- photo produit -->
                     <div class="">
                         <img class="min-picture" src="/img/product_pictures/<?=(is_null($productPicture)) ? 'empty_picture.jpg' : $productPicture ?>" alt="Photo du produit">         
                     </div>
                     <!-- /photo produit -->
+
                     <!-- nom produit -->
                     <div class="col-md align-self-center">
                         <h2 class="card-title"><strong><?=$productName ?></strong></h2>
                     </div>
                     <!-- /nom produit -->
+
                     <!-- selection quantite -->
                     <form class="form-inline" action="/form_processing/cart_quantity_process.php" method="POST">
                         <div class="form-group mx-sm-3 mb-2">
                             <label for="quantity" class="col-form-label mr-1">Quantity</label>                        
                             <input class="form-control " type="number" name="quantity" id="quantity" min="1" max="<?=$productStock ?>" value="<?=$productQuantity ?>"  style="text-align:center;">
                         </div>
-                        <!-- passage de l identifiant du produit en parametre cache pour le traitement de la modification de la quantite -->
+                        <!--------------------------------------------------//--------------------------------------------------------
+                                    passage de parametre cache pour le traitement de la modification de la quantite     -->
                         <input type="hidden" id="produitId" name="produitId" value="<?=$productId ?>">
-                        <!-- passage du nom du produit en parametre cache pour le message qui sera retourne par la page cart_quantity_process.php -->
+                        <!-- parametre pour le message qui sera retourne par la page cart_quantity_process.php -->
                         <input type="hidden" id="produitNom" name="produitNom" value="<?=$productName ?>">
+                        <!--        passage de parametre cache pour le traitement de la modification de la quantite     
+                        ----------------------------------------------------//-------------------------------------------------------->
+
                         <!-- boutons pour modifier la quantite d un produit du panier -->
-                        <button class ="btn btn-primary  mb-2" type="submit">MODIFIER</button>
+                        <button class ="btn btn-primary  mb-2" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i></button>
                         <!-- /boutons pour modifier la quantite d un produit du panier -->                    
                     </form>
-                    <!-- selection quantite -->
+                    <!-- /selection quantite -->
+
                     <!-- prix du produit -->
                     <div  class="col-md align-self-center">
-                        <h2 class="text-center"><?=$productPrice ?> €</h2>
+                        <h2 class="text-center"><?=$productTotalPrice ?> €</h2>
                     </div>
                     <!-- /prix du produit --> 
+
                     <!-- boutons pour supprimer un produit du panier -->
                     <div  class="align-self-center">
-                        <a class ="btn btn-danger" href="/form_processing/cart_delete_process.php?productId=<?=$productId ?>">SUPPRIMER</a>
+                        <a class ="btn btn-danger" href="/form_processing/cart_delete_process.php?productId=<?=$productId ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                     </div>
                     <!-- /boutons pour supprimer un produit du panier -->                                           
                 </div>
+                <!--------------------------------------------------------------------------------
+                                    /section pour afficher les produits du panier
+                ---------------------------------------//------------------------------------------->
                 <?php
                 }
-                //  ------------------------------------------------------------------------------------------------------
-                //  /debut script php pour recuperer toutes les informations des produits dans le panier
+                //  -------------------------------------------------------------------------------------------------------
+                //          /script php pour recuperer toutes les informations des produits dans le panier
                 //  ------------------------------------------------//------------------------------------------------------
                 ?>
-                <!-- section pour afficher le montant total du panier dynamiquement -->
+                <!-------------------------------------------------------------------------------------
+                        section pour afficher le montant total du panier dynamiquement
+                ----------------------------------------//--------------------------------------------->
                 <div class="row mb-3"> 
                     <div class="card ml-auto" style="width: 18rem;">
                         <div class="card-header">Nombre de produit :
@@ -155,19 +172,19 @@ $_SESSION['error']['page'] = 'panier';
                         </div>
                     </div>
                 </div>
-                <!-- /section pour afficher le montant total du panier dynamiquement -->
+                <!-------------------------------------------------------------------------------------
+                        /section pour afficher le montant total du panier dynamiquement
+                ----------------------------------------//--------------------------------------------->
 
                 <!-- bouton pour valider le panier --> 
                 <div class="row">                
                     <a type="submit" class="btn btn-success btn-lg btn-block" href="/form_processing/cart_valid_process.php">Valider panier</a>
                 </div>
                 <!-- /bouton pour valider le panier --> 
-            <!------------------------------------------------------------------------------
-                    /debut de la section pour afficher les produits dans le panier
-            -------------------------------------//----------------------------------------->                  
+                              
         </div>        
          <!----------------------------------------------------------------------------------------
-                            /debut du container pour afficher la page du panier
+                            /container pour afficher la page du panier
         -----------------------------------------//------------------------------------------------->   
 <!------------------------------------------>
     <?=var_dump($_SESSION) ?>
