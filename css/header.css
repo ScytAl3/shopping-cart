@@ -2,20 +2,29 @@
     Created on : 03 mars 2020
     Author     : Franck J.
 */
-.logo {
-    vertical-align: middle;
-    width: 100px;
-    height: 100px;
-}
-
-.logout-button {
-    width: 50px;
-}
-
 .my-header-bg {
     height: 50vh;
     min-height: 500px;
-    background-image: url('/img/default/bar-beer.jpg');
+    background-image: url('/img/header/bar-beer.jpg');
     background-size: cover;
     color: darkgoldenrod;
+}
+
+.logo {
+    color: #fff;
+    font-weight: 800;
+    font-size: 14pt;
+    padding: 35px;
+    text-align: center;
+}
+
+.line {
+    padding-top: 30px;
+    white-space: no-wrap;
+    overflow: hidden;
+    text-align: center;
+}
+
+hr {
+    border-top: 1px solid white !important;
 }

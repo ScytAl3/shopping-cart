@@ -6,59 +6,77 @@
     session_start ();
 
     // si le formulaire a ete envoye on verifie si les variables existes
-    if (isset($_POST['email']) && isset($_POST['password']))  {
+    if (isset($_POST['email']) && isset($_POST['password'])) {
         // on appelle la fonction qui verifie si un utilisateur avec ce pseudo existe
-        $wherePseudo = 'userEmail';
-        $emailValid = userExist($wherePseudo, $_POST['email']);
+        $whereEmail = 'userEmail';
+        $emailValid = userExist($whereEmail, $_POST['email']);
         //
         //var_dump($emailValid); die;
         //
-        // si la fonction a retournee un utilisateur
+        // ---------------------------------------------------------------------------------
+        //                                       si  - email valid
+        // ---------------------------------------------------------------------------------
         if ($emailValid) { 
             // on appelle la fonction qui verifie le mot de passe saisi avec celui chiffre dans la base de donnees 
             $testPwd = validPassword($_POST['password'], $emailValid);
             //
             //var_dump($testPwd); die;
             //
-            // si le mot de passe saisi est correct
+            // ---------------------------------------------------------------------------------
+            //                                  si  - password valid
+            // ---------------------------------------------------------------------------------
             if ($testPwd) {
-                // on enregistre comme variables de session - le nom et le prenom           
-                $_SESSION['current_FirstName'] = $emailValid['userFirstName'];
-                $_SESSION['current_LastName'] = $emailValid['userLastName'];
+                // on enregistre comme variables de session userName - le nom et le prenom concatene        
+                $firstName = $emailValid['userFirstName'];
+                $lastName = $emailValid['userLastName'];
+                $_SESSION['current']['userName'] = $firstName.' '.$lastName;
                 // on enregistre comme variables de session - le role 
-                $_SESSION['current_Role'] = $emailValid['userRole']; 
+                $_SESSION['current']['userRole'] = $emailValid['userRole']; 
+                // on stocke l identifiant temporaire pour verifier si l utilisateur a cree un panier avant de s authentifier ou de creer un compte
+                // ****************************************************************************
+                //                              TODO check si panier avec id userTemp
+                // ****************************************************************************
+                $userTemp = $_SESSION['current']['userId'];
+                // ****************************************************************************
+                //                              TODO check si panier avec id userTemp
+                // ****************************************************************************
                 // on enregistre comme variables de session - le numero d identifiant
-                $_SESSION['current_Id'] = $emailValid['userId'];                
+                $_SESSION['current']['userId'] = $emailValid['userId'];                
                 // on creer une variable de session login en cours
-                $_SESSION['current_Session'] = true;                
-                // on détruit les variables d erreur de login de notre session
-                unset ($_SESSION['error']);  
-                // suivant le role on redirige vers des pages differentes
+                $_SESSION['current']['login'] = true; 
+                // ---------------------------------------------------------------------------------
+                //                               redirection suivant le role
+                // ---------------------------------------------------------------------------------
+                // si role admin
                 if ($emailValid['userRole'] == 'Admin') {
                     // on  redirige vers la page d administration des produits
                     header('location: /../admin/admin_products.php');
                     exit();
+                } else {
+                    // on  redirige vers la page en cours avant le login
+                    header('location: /../index.php');
+                    exit();
                 }
-                // on  redirige vers la page d accueil
-                header('location: /../index.php');  
-                exit(); 
+            // ---------------------------------------------------------------------------------
+            //                                  sinon  - password invalid
+            // ---------------------------------------------------------------------------------
             } else {
                 // on renvoie un message d erreur (mot de passe non valide)
                 $_SESSION['error']['page'] = 'login';
-                $_SESSION['error']['show'] = true;
                 $_SESSION['error']['message'] = "Erreur de connexion, veuillez vérifier vos identifiants de connexion";
-                // on redirige vers la page index.php
-                header('location:/../index.php');
+                // on redirige vers la page de login
+                header('location:/../login.php');
                 exit();
-            }        
-        // sinon pas trouve de correspondance email dans la base        
+            }   
+        // ---------------------------------------------------------------------------------
+        //                                       sinon  - email invalid
+        // ---------------------------------------------------------------------------------  
         } else {            
-            // on renvoie un message d erreur (pseudo n existe pas dans la table)
+            // on renvoie un message d erreur (email n existe pas dans la table)
             $_SESSION['error']['page'] = 'login';
-            $_SESSION['error']['show'] = true;
             $_SESSION['error']['message'] = "Erreur de connexion, veuillez vérifier vos identifiants de connexion";
-            // on redirige vers la page index.php
-            header('location:/../index.php');
+            // on redirige vers la page de login
+            header('location:/../login.php');
             exit();
         }
     }

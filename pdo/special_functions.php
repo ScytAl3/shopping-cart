@@ -1,7 +1,16 @@
 <?php
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                      Les Fonctions chiffrement                                    //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // --------------------------------------------------------------
 // FONCTION : Generer Salt
 // --------------------------------------------------------------
+/**
+ * genere uns Salt qui sera associe a un compte pour chiffrer le mot de passe
+ * 
+ * @return String   chaine aleatoire de 10 caracteres
+ */
 function generateSalt( $lenght = 10 ) {
     $allowedChar = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $maxLenght = strlen($allowedChar);
@@ -16,6 +25,14 @@ function generateSalt( $lenght = 10 ) {
 // --------------------------------------------------------------
 // FONCTION : Hashage du mot de passe
 // --------------------------------------------------------------
+/**
+ * retourne une chaine chiffree
+ * 
+ * @param String    le Salt associe a un utilisateur
+ * @param String    la chaine de caractere saisie par l utilisateur lors de la creation de son compte
+ * 
+ * @return String   chaine chiffree
+ */
 function CreateEncryptedPassword( $salt, $password )
 {
     $md5Pwd = md5($password);
@@ -26,6 +43,15 @@ function CreateEncryptedPassword( $salt, $password )
 // --------------------------------------------------------------
 // FONCTION : Verification du mot de passe
 // --------------------------------------------------------------
+/**
+ * verifie le mot de passe saisi avec celui enregistre dans la base de donnees
+ * 
+ * @param String    le salt associe a l utilisateur stocke dans la base de donnees
+ * @param String    le mot de passe associe a l utilisateur stocke dans la base de donnees
+ * @param String    le mot de passe saisi lors de l authentification
+ * 
+ * @return Boolean  renvoie TRUE si le mot de passe saisi correspond - sinon FALSE
+ */
 function VerifyEncryptedPassword( $userSalt, $userPwd, $loginPwd )
 {
     $encryptLoginPwd = CreateEncryptedPassword($userSalt, $loginPwd);
@@ -46,9 +72,20 @@ $check = VerifyEncryptedPassword($mySalt, $myPwd, $pwdIn);
 var_dump($check);
 */
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                      Les Fonctions upload file                                      //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // --------------------------------------------------------------
 // FONCTION : Verification des images
 // --------------------------------------------------------------
+/**
+ * verifie que le fichier uploade correspond a ce qui est autorise
+ * 
+ * @param Array tableau associe au fichier uploade $_FILES[]
+ * 
+ * @return String   retourne un string vide si le fichier est valide, sinon le message d erreur correspondant    
+ */
 function ValidateUpload($image) {
     // on initialise le tableau des erreurs
     $errors= array();
@@ -88,6 +125,13 @@ function ValidateUpload($image) {
 // --------------------------------------------------------------
 // FONCTION : Telechargement  des images
 // --------------------------------------------------------------
+/**
+ * deplace le fichier uploade a partir du dossier temporaire vers le dossier de destination en le chiffrant
+ * 
+ * @param Array tableau associe au fichier uploade $_FILES[]
+ * 
+ * @return String retourne le nom du fichier chiffre
+ */
 function UploadImage($image) {
     // si aucune image n est envoyee la valeur pour l insert sera null et on affichera l image par defaut
     if ($image['name'] == '') {
@@ -109,9 +153,20 @@ function UploadImage($image) {
     return $newFileName;
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                      Les Fonctions diverses                                          //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // --------------------------------------------------------------
 // FONCTION : Formatage de la date a afficher
 // --------------------------------------------------------------
+/**
+ * formate une date MySQL dans le format choisi
+ * 
+ * @param Datetime  la date MySQL retournee par une requete SELECT
+ * 
+ * @return String   la date formatee
+ */
 function formatedDateTime($mysqlDate){
     $date = date_format($mysqlDate,"d/m/Y");
     $hour = date_format($mysqlDate, "H");
@@ -120,6 +175,10 @@ function formatedDateTime($mysqlDate){
     return  $date.' à '.$hour.'h'.$minute.'.';
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                      Les Fonctions panier                                             //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // ------------------------------------------------------------------------------
 // FONCTION : verification presence d un produit dans le panier
 // ------------------------------------------------------------------------------
@@ -127,7 +186,7 @@ function formatedDateTime($mysqlDate){
  * verifie la presence d un produit dans le panier
  *
  * @param String $id_product numéro d identification du produit a verifier
- * @return Boolean Renvoie Vrai si le produit est trouve dans le panier, Faux sinon
+ * @return Boolean Renvoie TRUE si le produit est trouve dans le panier, FALSE sinon
  */
 function verifyPanier($id_product) {
     // on initialise la variable de retour
@@ -145,9 +204,9 @@ function verifyPanier($id_product) {
 /**
  * supprimer un article du panier
  * 
- * @param String     $id_product numéro d identification du produit a supprimer 
- * @param Boolean    $reindex : facultatif, par défaut, vaut true pour ré-indexer le tableau après 
- *                                  suppression. On peut envoyer false si cette ré-indexation n'est pas nécessaire. 
+ * @param String     $id_product numero d identification du produit a supprimer 
+ * @param Boolean    $reindex : facultatif, par defaut, vaut true pour re-indexer le tableau apres 
+ *                                  suppression. On peut envoyer false si cette re-indexation n est pas necessaire. 
  * @return Mixed     retourne TRUE si la suppression a bien ete effectuee - FALSE sinon - "absent" si 
  *                                  le produit a deja ete retire du panier 
  */
@@ -246,6 +305,11 @@ function quantite_produit_panier() {
 // ------------------------------------------------------------------------------
 // FONCTION : vider le panier
 // ------------------------------------------------------------------------------
+/**
+ * vide le panier en cours
+ * 
+ * @return Boolean  retourne TRUE si le panier est vide, sinon FALSE
+ */
 function vider_panier()
 {
     $vide = false;

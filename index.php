@@ -21,20 +21,31 @@ if (!isset($_SESSION['panier'])) {
 //----------------------------//----------------------------
 //----------------------------//----------------------------s
 //                              USER
-// utilisateur valide en cours de session
-$_SESSION['current_Session'] = (isset($_SESSION['current_Session'])) ? $_SESSION['current_Session'] : false;
-// variable pour identifier l utilisateur connecte en cours de session 
-$_SESSION['current_Id']  =  (isset($_SESSION['current_userTemp'])) ? $_SESSION['current_userTemp'] : time();
-// role utilisateur en cours de session
-$_SESSION['current_Role'] = (isset($_SESSION['current_Role'])) ? $_SESSION['current_Role'] : 'Default';
+// on verifie l existence du tableau des informations de session, sinon on le cree
+if (!isset($_SESSION['current'])) {
+    // initialisation du tableau 
+    $_SESSION['current'] = array();
+    $_SESSION['current']['page'] = '';
+    $_SESSION['current']['login'] = false;
+    $_SESSION['current']['userId'] = time();
+    $_SESSION['current']['userName'] = '';
+    $_SESSION['current']['userRole'] = 'Visitor';
+}
+// nom de la page en cours
+$_SESSION['current']['page'] = 'index';
 //                              USER
 //----------------------------//----------------------------
 //----------------------------//----------------------------
 //                     ERROR MANAGEMENT
-$_SESSION['error']['page'] = (isset($_SESSION['error']['page'])) ? $_SESSION['error']['page'] : 'productList';
-$_SESSION['error']['show'] = ((isset($_SESSION['error']['show'])) && ($_SESSION['error']['page'] =='productList')) ? $_SESSION['error']['show'] : false;
-$_SESSION['error']['message'] = ((isset($_SESSION['error']['message'])) && ($_SESSION['error']['page'] =='productList')) ? $_SESSION['error']['message'] :  '';
-$_SESSION['error']['page'] = 'productList';
+// on verifie l existence du tableau d erreur, sinon on le cree
+if (!isset($_SESSION['error'])) {
+    // initialisation du tableau 
+    $_SESSION['error'] = array();
+    $_SESSION['error']['page'] = '';
+    $_SESSION['error']['message'] = '';
+}
+// on efface le message d erreur d une autre page
+if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['error']['message'] = '';}
 //                     ERROR MANAGEMENT
 //----------------------------//----------------------------
 // ----------------------------------------------------------
@@ -59,7 +70,7 @@ $_SESSION['error']['page'] = 'productList';
         <!-- font awesome stylesheet -->
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<!-- default stylesheet -->
-		<link href="css/index.css" rel="stylesheet" type="text/css">
+		<link href="css/global.css" rel="stylesheet" type="text/css">
         <!-- includes stylesheet -->
         <link href="css/header.css" rel="stylesheet" type="text/css">
     </head>    
@@ -69,97 +80,23 @@ $_SESSION['error']['page'] = 'productList';
         <?php include 'includes/header.php'; ?>
         <!-- /import du header -->
         <!--------------------------------------//------------------------------------------------
-                                    container pour afficher la liste des produits
+                            container pour afficher la presentation du site
         ------------------------------------------------------------------------------------------>           
-        <div class="mt-5 container-fluid"> 
-
+        <div class="mt-5 container">
             <!-- titre de la page de presentation des produits & messages divers -->
-            <div class="my-3 p-3">
-                <div class="text-center mx-auto">
-                    <!-- message d information pour tester la connexion a la base de donnees -->
-                    <div class="show-bg">
-                        <?php require 'pdo/pdo_db_connect.php'; 
-                            // on instancie une connexion pour verifie s il n y a pas d erreurs avec les parametres de connexion
-                            $pdo = my_pdo_connexxion();
-                            if ($pdo) {
-                                echo 'Connexion réussie à la base de données';
-                            } else {
-                                var_dump($pdo);
-                            }
-                        ?>                            
-                    </div>
-                    <!-- /message d information pour tester la connexion a la base de donnees -->                   
-                    
-                    <h2 class="display-4 font-weight-bold text-muted">Liste des produits disponibles</h2>                       
-                    <!-- area pour afficher un message d erreur -->
-                    <div class="show-bg<?=($_SESSION['error']['show']) ? '' : 'visible'; ?> text-center mt-5">
-                        <p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
-                    </div>
-                    <!-- /area pour afficher un message d erreur lors du login -->
-                </div>                
+            <div class="my-3 p-3 text-center">
+                <h1 class="display-4 font-weight-bold text-muted mb-5">Presentation</h1>
+                <blockquote class="blockquote">
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elicerem ex te cogeremque, ut responderes, nisi vererer ne Herculem ipsum ea, quae pro salute gentium summo labore gessisset, voluptatis causa gessisse diceres. Sed tu, ut dignum est tua erga me et philosophiam voluntate ab adolescentulo suscepta, fac ut Metrodori tueare liberos. Erit enim mecum, si tecum erit. Bonum ipsum etiam quid esset, fortasse, si opus fuisset, definisses aut quod esset natura adpetendum aut quod prodesset aut quod iuvaret aut quod liberet modo. Cognitis autem rerum finibus, cum intellegitur, quid sit et bonorum extremum et malorum, inventa vitae via est conformatioque omnium officiorum, cum quaeritur, quo quodque referatur; Duo Reges: constructio interrete. Bonum ipsum etiam quid esset, fortasse, si opus fuisset, definisses aut quod esset natura adpetendum aut quod prodesset aut quod iuvaret aut quod liberet modo. Obsequar igitur voluntati tuae dicamque, si potero, rhetorice, sed hac rhetorica philosophorum, non nostra illa forensi, quam necesse est, cum populariter loquatur, esse interdum paulo hebetiorem.</p>
+
+                    <p class="text-justify">Itaque prima illa commendatio, quae a natura nostri facta est nobis, incerta et obscura est, primusque appetitus ille animi tantum agit, ut salvi atque integri esse possimus. Quid enim dicis omne animal, simul atque sit ortum, applicatum esse ad se diligendum esseque in se conservando occupatum? Sic, quod est extremum omnium appetendorum atque ductum a prima commendatione naturae, multis gradibus adscendit, ut ad summum perveniret, quod cumulatur ex integritate corporis et ex mentis ratione perfecta. Sed tamen omne, quod de re bona dilucide dicitur, mihi praeclare dici videtur. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? -delector enim, quamquam te non possum, ut ais, corrumpere, delector, inquam, et familia vestra et nomine.</p>
+
+                    <p class="text-justify">Dicis eadem omnia et bona et mala, quae quidem dicunt ii, qui numquam philosophum pictum, ut dicitur, viderunt: valitudinem, vires, staturam, formam, integritatem unguiculorum omnium bona, deformitatem, morbum, debilitatem mala. Si scieris, inquit Carneades, aspidem occulte latere uspiam, et velle aliquem inprudentem super eam assidere, cuius mors tibi emolumentum futura sit, improbe feceris, nisi monueris ne assidat, sed inpunite tamen; Nec enim, cum tua causa cui commodes, beneficium illud habendum est, sed faeneratio, nec gratia deberi videtur ei, qui sua causa commodaverit. Non enim in ipsa sapientia positum est beatum esse, sed in iis rebus, quas sapientia comparat ad voluptatem. De maximma autem re eodem modo, divina mente atque natura mundum universum et eius maxima partis administrari. Facit enim ille duo seiuncta ultima bonorum, quae ut essent vera, coniungi debuerunt; Nihil enim arbitror esse magna laude dignum, quod te praetermissurum credam aut mortis aut doloris metu. Si sapiens, ne tum quidem miser, cum ab Oroete, praetore Darei, in crucem actus est. Principiis autem a natura datis amplitudines quaedam bonorum excitabantur partim profectae a contemplatione rerum occultiorum, quod erat insitus menti cognitionis amor, e quo etiam rationis explicandae disserendique cupiditas consequebatur; Quo modo autem philosophus loquitur?</p>                    
+                </blockquote>
             </div>
-            <!-- /titre de la page de presentation des produits & messages divers -->       
-            
-            <div class="row justify-content-around">
-                <!---------------------------------//-----------------------------------------
-                                    script php pour recuperer tous les produits
-                ------------------------------------------------------------------------------>
-                <?php   
-                // appelle de la fonction qui retourne les information de chaque produits
-                $allProduct = allProductReader();   
-                //
-                //var_dump($allProduct); die;
-                //
-                // si la fonction retourne un resultat
-                if ($allProduct) {
-                    // boucle pour afficher les differentes produits
-                    foreach ($allProduct as $myProduct => $column) {
-                        // on verifie la presence du nom d une image dans la table sinon on affiche celle par defaut
-                        $productPicture = (($column['picture']) == '') ? 'empty_picture.jpg' : $column['picture'];
-                ?>
-                <!-- on recupere les valeurs des differents champs d une ligne d un produit-->             
-                <div class="col-sm-3 card border-primary mx-1 mb-5 py-3">
-                    <!-- photo du produit -->
-                    <img class="card-img-top news-picture mx-auto" src="/img/product_pictures/<?=$productPicture ?>" alt="a product picture">
-                    <!-- /photo du produit -->
-
-                    <!-- nom et description du produit -->
-                    <div class="card-header mt-2">
-                        <h1 class="card-title pricing-card-title"> € <?=$column['produitPrix']; ?></h1>
-                    </div>
-                    <div class="card-body">
-                        <h2 class="card-title"><strong><?=$column['produitName']; ?></strong></h2>                        
-                        <h4 class="card-text text-truncate"><?=$column['produitResume']; ?></h4>
-                    </div>
-                    <!-- /nom et description du produit -->
-
-                    <!-- bouton pour ajouter le produit selectionne --> 
-                        <a class ="btn btn-primary" href="/form_processing/cart_add_process.php?productId=<?=$column['produitId']; ?>&productPrice=<?=$column['produitPrix']; ?>">Ajouter au panier</a>
-                    <!-- /bouton pour ajouter le produit selectionne --> 
-                </div>             
-                <?php
-                } 
-                //----------------------------------------------------------------------------
-                //            /script php pour recuperer tous les produits
-                //-----------------------------------//---------------------------------------- 
-                // si la requete ne retourne rien
-                } else {
-                ?>
-            </div> 
-                    <!-- affiche un message pour dire qu il n y a pas encore de produits dans la base de donnees -->
-                    <div class="my-3">                                                                       
-                        <div class="mx-auto px-3 py-2 text-center info-message-bg">
-                            <h2 class="card-title">Il n'y a aucun produit à afficher pour le moment !</h2>
-                        </div>
-                    </div> 
-                    <!-- /affiche un message pour dire qu il n y a pas encore de produits dans la base de donnees -->
-                <?php
-                }
-                ?>
-                              
-        </div>        
+        </div>  
          <!----------------------------------------------------------------------------------------
-                                /container pour afficher la liste des produits
+                            /container pour afficher la presentation du site
         -----------------------------------------//------------------------------------------------->   
 <!------------------------------------------>
     <?=var_dump($_SESSION) ?>

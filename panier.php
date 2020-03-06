@@ -11,10 +11,15 @@ if (isset($_SESSION['panier']) && empty($_SESSION['panier']['id_product'])) {
 //                  variables de session
 // ---------------------------------------------------------
 //----------------------------//----------------------------
+//                              USER
+// nom de la page en cours
+$_SESSION['current']['page'] = 'panier';
+//                              USER
+//----------------------------//----------------------------
+//----------------------------//----------------------------
 //                     ERROR MANAGEMENT
-$_SESSION['error']['show']  = ($_SESSION['error']['page'] != 'panier') ? false : $_SESSION['error']['show'];
-$_SESSION['error']['message']  =  ($_SESSION['error']['page'] != 'panier') ? '' : $_SESSION['error']['message'];
-$_SESSION['error']['page'] = 'panier';
+// on efface le message d erreur d une autre page
+if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['error']['message'] = '';}
 //                     ERROR MANAGEMENT
 //----------------------------//----------------------------
 // ----------------------------------------------------------
@@ -39,6 +44,8 @@ $_SESSION['error']['page'] = 'panier';
         <!-- font awesome stylesheet -->
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<!-- default stylesheet -->
+        <link href="css/global.css" rel="stylesheet" type="text/css">
+        <!-- current page stylesheet -->
 		<link href="css/panier.css" rel="stylesheet" type="text/css">
         <!-- includes stylesheet -->
         <link href="css/header.css" rel="stylesheet" type="text/css">
@@ -58,7 +65,7 @@ $_SESSION['error']['page'] = 'panier';
                     <!-- titre de la page de presentation des produits -->
                     <h2 class="display-4 font-weight-bold text-muted">Votre panier</h2>                       
                     <!-- area pour afficher un message d erreur -->
-                    <div class="show-bg<?=($_SESSION['error']['show']) ? '' : 'visible'; ?> text-center mt-5">
+                    <div class="show-bg<?=($_SESSION['current']['page'] == $_SESSION['error']['page']) ? '' : 'visible'; ?> text-center mt-5">
                         <p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
                     </div>
                     <!-- /area pour afficher un message d erreur lors du login -->
@@ -66,10 +73,14 @@ $_SESSION['error']['page'] = 'panier';
                 <!-- /titre de la page de presentation des produits -->
             </div>           
             
-            <?php                
-                // on appelle la fonction qui calcule le nombre total de produit dans le panier
+            <?php
+                // --------------------------------------------------------------------------------------
+                //             fonction qui calcule le nombre total de produit dans le panier
+                // --------------------------------------------------------------------------------------
                 $quantiteTotale = quantite_produit_panier();
-                // on appelle la fonction qui calcule le montant du panier
+                // --------------------------------------------------------------------------------------
+                //                          fonction qui calcule le montant total du panier
+                // --------------------------------------------------------------------------------------
                 $montantTotal = montant_panier();
                 //  --------------------------------------------------//--------------------------------------------------
                 //          script php pour recuperer toutes les informations des produits dans le panier
@@ -83,14 +94,17 @@ $_SESSION['error']['page'] = 'panier';
                 for ($i = 0; $i < $productCount; $i++) { 
                     // identifiant du produit dans le panier - iteration
                     $productId = $_SESSION['panier']['id_product'][$i];
-                    // appelle de la fonction pour renvoyer les informations supplementaire du produit
+                    // ----------------------------------------//----------------------------------------------
+                    //                       fonction qui renvoie les informations du produit
                     $myProduct = productReader($productId);
                     // image du produit
                     $productPicture = $myProduct['picture'];
                     // nom du produit
                     $productName = $myProduct['produitName'];
                     // quantite en stock du produit
-                    $productStock = $myProduct['produitQuantite'];
+                    $productStock = $myProduct['produitQuantite'];                    
+                    //                       fonction qui renvoie les informations du produit
+                    // ----------------------------------------//----------------------------------------------
                     // quantite commandee dans la panier - iteration
                     $productQuantity = $_SESSION['panier']['qte_product'][$i];
                     // prix unitaire du produit - iteration
@@ -178,7 +192,7 @@ $_SESSION['error']['page'] = 'panier';
 
                 <!-- bouton pour valider le panier --> 
                 <div class="row">                
-                    <a type="submit" class="btn btn-success btn-lg btn-block" href="/form_processing/cart_valid_process.php">Valider panier</a>
+                    <a type="submit" class="btn btn-success btn-lg btn-block" href="/form_processing/cart_checkout_process.php">Valider panier</a>
                 </div>
                 <!-- /bouton pour valider le panier --> 
                               

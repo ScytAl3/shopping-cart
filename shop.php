@@ -2,23 +2,20 @@
 // on démarre la session
 session_start ();
 // import du script pdo des fonctions qui accedent a la base de donnees
-require '../pdo/pdo_db_functions.php';
-// verification que l utilisateur ne passe pas par l URL pour acceder a la page admin, sinon redirection page login
-if (isset($_SESSION['current']['login']) && ($_SESSION['current']['userRole'] != 'Admin')) {
-    header('location: ../login.php');
-}
+require 'pdo/pdo_db_functions.php';
 // ----------------------------//---------------------------
 //                      variables de session
 // ---------------------------------------------------------
-//----------------------------//----------------------------s
+//----------------------------//----------------------------
 //                              USER
 // nom de la page en cours
-$_SESSION['current']['page'] = 'adminProduct';
+$_SESSION['current']['page'] = 'shop';
 //                              USER
 //----------------------------//----------------------------
 //----------------------------//----------------------------
 //                     ERROR MANAGEMENT
-
+// on efface le message d erreur d une autre page
+if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['error']['message'] = '';}
 //                     ERROR MANAGEMENT
 //----------------------------//----------------------------
 // ----------------------------------------------------------
@@ -31,7 +28,7 @@ $_SESSION['current']['page'] = 'adminProduct';
 		<!-- default Meta -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Admin - Gestion des produits</title>
+		<title>Gestion panier - Liste des produits</title>
 		<meta name="author" content="Franck Jakubowski">
 		<meta name="description" content="Un mini site de produits à ajouter à un panier.">
 		<!-- 
@@ -43,23 +40,38 @@ $_SESSION['current']['page'] = 'adminProduct';
         <!-- font awesome stylesheet -->
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<!-- default stylesheet -->
-		<link href="../css/admin_products.css" rel="stylesheet" type="text/css">
+		<link href="css/global.css" rel="stylesheet" type="text/css">
         <!-- includes stylesheet -->
-        <link href="../css/header.css" rel="stylesheet" type="text/css">
+        <link href="css/header.css" rel="stylesheet" type="text/css">
     </head>    
     
 	<body>   
         <!-- import du header -->
-        <?php include '../includes/header.php'; ?>
+        <?php include 'includes/header.php'; ?>
         <!-- /import du header -->
         <!--------------------------------------//------------------------------------------------
-                        container pour afficher la liste des produits a administrer
+                                    container pour afficher la liste des produits
         ------------------------------------------------------------------------------------------>           
         <div class="mt-5 container-fluid"> 
+
             <!-- titre de la page de presentation des produits & messages divers -->
-            <div class="my-3 p-3">                
+            <div class="my-3 p-3">
                 <div class="text-center mx-auto">
-                    <h2 class="display-4 font-weight-bold text-muted">Liste des produits</h2>                       
+                    <!-- message d information pour tester la connexion a la base de donnees -->
+                    <div class="info-message-bg">
+                        <?php require 'pdo/pdo_db_connect.php'; 
+                            // on instancie une connexion pour verifie s il n y a pas d erreurs avec les parametres de connexion
+                            $pdo = my_pdo_connexxion();
+                            if ($pdo) {
+                                echo 'Connexion réussie à la base de données';
+                            } else {
+                                var_dump($pdo);
+                            }
+                        ?>                            
+                    </div>
+                    <!-- /message d information pour tester la connexion a la base de donnees -->                   
+                    
+                    <h2 class="display-4 font-weight-bold text-muted">Liste des produits disponibles</h2>                       
                     <!-- area pour afficher un message d erreur -->
                     <div class="show-bg<?=($_SESSION['current']['page'] == $_SESSION['error']['page']) ? '' : 'visible'; ?> text-center mt-5">
                         <p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
@@ -67,57 +79,56 @@ $_SESSION['current']['page'] = 'adminProduct';
                     <!-- /area pour afficher un message d erreur lors du login -->
                 </div>                
             </div>
-            <!-- /titre de la page de presentation des produits & messages divers -->
+            <!-- /titre de la page de presentation des produits & messages divers -->       
             
-            <!-- bouton qui dirige vers le formulaire admin pour creer un produit -->
-            <div class="my-5 mx-auto">
-                <a class="btn btn-success btn-lg btn-block" href="/admin_page/admin_product_create.php">- Ajouter un produit -</a>
-            </div> 
-            <!-- /bouton qui dirige vers le formulaire admin pour creer unproduit -->
-            
+            <div class="row justify-content-around">
                 <!---------------------------------//-----------------------------------------
                                     script php pour recuperer tous les produits
                 ------------------------------------------------------------------------------>
                 <?php   
-                    // appelle de la fonction qui retourne les information de chaque produits
-                    $allProduct = allProductReader();   
-                    //
-                    //var_dump($allProduct); die;
-                    //
-                    // si la fonction retourne un resultat
-                    if ($allProduct) {
+                // appelle de la fonction qui retourne les information de chaque produits
+                $allProduct = allProductReader();   
+                //
+                //var_dump($allProduct); die;
+                //
+                // si la fonction retourne un resultat
+                if ($allProduct) {
                     // boucle pour afficher les differentes produits
                     foreach ($allProduct as $myProduct => $column) {
+                        // on verifie la presence du nom d une image dans la table sinon on affiche celle par defaut
+                        $productPicture = (($column['picture']) == '') ? 'empty_picture.jpg' : $column['picture'];
                 ?>
-                    <!-- affiche les informations pour chaque produit -->                     
-                    <div class="card bg-light border-success mb-3 w-100">
-                        <div class="card-body">  
-                            <div class="row">                                   
-                                <div class="col-8 ml-4 align-self-center">
-                                    <h2 class="card-title"><strong><?=$column['produitName']; ?></strong></h2>
-                                    <h4 class="card-text text-truncate"><?=$column['produitResume']; ?></h4>
-                                </div>
-                                <!-- boutons pour modifier ou supprimer un produit --> 
-                                <div class="d-flex ml-auto align-self-center">
-                                    <a class="btn btn-primary" href="admin_product_edit.php?productId=<?=$column['produitId'] ?>">Edit</a>
-                                    <form method="post" action="/forms_processing/admin_product_delete_process.php" onsubmit=" return confirm('are you really sure')">
-                                        <!-- passage de l identifiant du produit en hidden pour le traitement de la suppression -->
-                                        <input name="productId" type="hidden" value="<?=$column['produitId']; ?>">
-                                        <button class="btn btn-danger ml-1">Delete</button>
-                                    </form>
-                                </div>
-                                <!-- /boutons pour modifier ou supprimer un produit --> 
-                            </div>                            
-                        </div>
-                    </div>                 
-                    <!-- /on recupere les informations pour chaque actualite --> 
+                <!-- on recupere les valeurs des differents champs d une ligne d un produit-->             
+                <div class="col-sm-2 card border-secondary mx-1 mb-5 py-3">
+                    <!-- photo du produit -->
+                    <img class="card-img-top mx-auto" src="/img/product_pictures/<?=$productPicture ?>" alt="a product picture">
+                    <!-- /photo du produit -->
+
+                    <!-- nom et description du produit -->
+                    <div class="card-header mt-2">
+                        <h1 class="card-title pricing-card-title"> € <?=$column['produitPrix']; ?></h1>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title"><strong><?=$column['produitName']; ?></strong></h2>                        
+                        <h4 class="card-text text-truncate"><?=$column['produitResume']; ?></h4>
+                    </div>
+                    <!-- /nom et description du produit -->
+
+                    <!-- bouton pour ajouter le produit selectionne --> 
+                        <a class ="btn btn-primary" href="/form_processing/cart_add_process.php?productId=<?=$column['produitId']; ?>&productPrice=<?=$column['produitPrix']; ?>">Ajouter au panier</a>
+                    <!-- /bouton pour ajouter le produit selectionne --> 
+                </div>             
                 <?php
                 } 
+                //----------------------------------------------------------------------------
+                //            /script php pour recuperer tous les produits
+                //-----------------------------------//---------------------------------------- 
                 // si la requete ne retourne rien
                 } else {
                 ?>
+            </div> 
                     <!-- affiche un message pour dire qu il n y a pas encore de produits dans la base de donnees -->
-                    <div class="my-3 w-100">                                                                       
+                    <div class="my-3">                                                                       
                         <div class="mx-auto px-3 py-2 text-center info-message-bg">
                             <h2 class="card-title">Il n'y a aucun produit à afficher pour le moment !</h2>
                         </div>
@@ -126,12 +137,10 @@ $_SESSION['current']['page'] = 'adminProduct';
                 <?php
                 }
                 ?>
-                <!----------------------------------------------------------------------------
-                                /script php pour recuperer tous les produits
-                -----------------------------------//----------------------------------------->       
+                              
         </div>        
          <!----------------------------------------------------------------------------------------
-                        /container pour afficher la liste des produits a administrer
+                                /container pour afficher la liste des produits
         -----------------------------------------//------------------------------------------------->   
 <!------------------------------------------>
     <?=var_dump($_SESSION) ?>
