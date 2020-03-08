@@ -15,7 +15,7 @@
         // --------------------------------------------------------------------------------
         if ($newQuantity) {
             // on envoie un message avec le nombre ajoute
-            $_SESSION['error']['show'] = true;
+            $_SESSION['error']['page'] = 'panier';
             $_SESSION['error']['message'] = "La quantité de ". $_POST['produitNom']." est passé à ".$_POST['quantity']." !";
             // on redirige vers la page du panier
             header('location:/../panier.php');
@@ -25,10 +25,10 @@
         // --------------------------------------------------------------------------------
         } else {
             // on envoie un message d erreur
-            $_SESSION['error']['show'] = true;
+            $_SESSION['error']['page'] = 'panier';
             $_SESSION['error']['message'] = "Problème lors de la modification de la quantité de ".$_POST['produitNom']." !";
             // on redirige vers la page du panier
-            header('location:/../index.php');
+            header('location:/../panier.php');
             die();
         }
     }

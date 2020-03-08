@@ -8,14 +8,6 @@ session_start ();
 //                              USER
 // nom de la page en cours
 $_SESSION['current']['page'] = 'sign_up';
-// on verifie l existence du tableau des informations de saisies pour ne pas devoir tout ressaisir, sinon on le cree
-if (!isset($_SESSION['signupForm'])) {
-    // initialisation du tableau 
-    $_SESSION['signupForm'] = array();
-    $_SESSION['signupForm']['inputLastName'] = '';
-    $_SESSION['signupForm']['inputFirstName'] = '';
-    $_SESSION['signupForm']['inputMail'] = '';
-}
 //                              USER
 //----------------------------//----------------------------
 //----------------------------//----------------------------
@@ -64,8 +56,12 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 				<!-- titre de la section du formulaire -->              
 				<div class="py-2 text-center">
 					<h1 class="text-muted"><strong>INSCRIPTION</strong></h1>
+					<!-- logo du site -->
+					<div class="text-center">
+						<img class="mb-4" src="/img/header/beer-bottle.png" alt="site logo" width="100" height="100">
+					</div>
 					<!-- area pour afficher un message d erreur lors de la creation -->
-					<div class="show-bg <?=($_SESSION['current']['page'] == $_SESSION['error']['page']) ? '' : 'visible'; ?> text-center mt-5">
+					<div class="alert alert-danger <?=($_SESSION['error']['message'] != '') ? 'visible' : 'invisible'; ?> text-center mt-5" role="alert">
 						<p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
 					</div>
 					<!-- /area pour afficher un message d erreur lors de la creation -->
@@ -75,31 +71,24 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 				<!----------------------------------------//--------------------------------------------------
 													debut du formulaire d inscription
                 ---------------------------------------------------------------------------------------------->
-				<form class="form-inscription" action="form_processing/signup_process.php" method="POST" enctype="multipart/form-data">
-					<!-- logo du site -->
-					<div class="text-center">
-						<img class="mb-4" src="/img/header/beer-bottle.png" alt="site logo" width="100" height="100">
-					</div>
-
+				<form class="form-inscription" action="form_processing/signup_process.php" method="POST" enctype="multipart/form-data">					
                     <!-- nom -->
 					<div class="mb-4">
 						<label for="lastName">Nom</label>
-						<input class="form-control" name="lastName" id="lastName" type="text" value="<?=$_SESSION['signupForm']['inputLastName'] ?>" required
-							pattern="^[A-Za-z -]{1,75}$">
+						<input class="form-control" name="lastName" id="lastName" type="text" required pattern="^[A-Za-z -]{1,75}$">
                     </div>	
                     		
 					<!-- prenom -->
 					<div class="mb-4">
 						<label for="firstName">Prénom</label>
-						<input class="form-control" name="firstName" id="firstName" type="text" value="<?=$_SESSION['signupForm']['inputFirstName'] ?>" required
-							pattern="^[A-Za-z -]{1,75}$">
+						<input class="form-control" name="firstName" id="firstName" type="text" required pattern="^[A-Za-z -]{1,75}$">
                     </div>		
                     
 					<!-- email -->
 					<div class="mb-4">
 						<label for="email">Courriel</label>
 						<input class="form-control" type="email" name="email" id="email"
-							placeholder="utilisateur@domaine.fr" value="<?=$_SESSION['signupForm']['inputMail'] ?>" required
+							placeholder="utilisateur@domaine.fr" required
 							pattern="^[\w!#$%&'*+/=?`{|}~^-]+(?:\.[\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$">
 					</div>
 

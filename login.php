@@ -59,7 +59,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                         <div class="text-center mx-auto">
                             <h2 class="display-4 font-weight-bold text-muted">Veuillez vous connecter</h2>                       
                             <!-- area pour afficher un message d erreur lors d un mauvais login : pseudo inexistant ou erreud password -->
-                            <div class="show-bg<?=($_SESSION['current']['page'] == $_SESSION['error']['page']) ? '' : 'visible'; ?> text-center mt-5">
+                            <div class="alert alert-danger <?=($_SESSION['error']['message'] != '') ? 'visible' : 'invisible'; ?> text-center mt-5" role="alert">
                                 <p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
                             </div>
                             <!-- /area pour afficher un message d erreur lors du login : pseudo inexistant ou erreud password -->

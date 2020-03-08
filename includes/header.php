@@ -33,18 +33,18 @@
 </nav>
 <!-- header avec une image pleine en background centree verticalement -->
 <header class="my-header-bg">
-    <div class="row col-12 mx-auto">
+    <div class="row mx-auto">
         <div class="col-5 line"><hr></div>
         <div class="col-2 logo">
-        <img src="/img/header/beer-bottle.svg" width="30" height="30" class="d-inline-block align-top" alt="header logo">
+            <img src="/img/header/beer-bottle.svg" width="30" height="30" class="d-inline-block align-top" alt="header logo">
         </div>
         <div class="col-5 line"><hr></div>
     </div>
     <div class="container h-100">
         <div class="row h-75 align-items-center">
             <div class="col-12">
-                <h1 class="display-4 font-weight-normal">"Work is the curse of the drinking classes."</h1>
-                <p class="lead  text-right">― Oscar Wilde</p>
+                <h1 class="display-4 font-weight-normal quote-text">"Work is the curse of the drinking classes."</h1>
+                <p class="lead text-right quote-text">― Oscar Wilde</p>
             </div>
         </div>
     </div>

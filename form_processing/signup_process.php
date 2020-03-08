@@ -6,11 +6,7 @@
     session_start(); 
 
     // si le formulaire a ete envoyer les variables existes
-    if (isset( $_POST['lastName'], $_POST['firstName'], $_POST['email'], $_POST['password']))  {      
-        // on creer un array de session avec les champs envoyes pour ne pas avoir a les ressaisir si il y a une erreur dans le formulaire
-        $_SESSION['signupForm']['inputLastName'] = $_POST['lastName'];
-        $_SESSION['signupForm']['inputFirstName'] = $_POST['firstName'];
-        $_SESSION['signupForm']['inputMail'] = $_POST['email']; 
+    if (isset( $_POST['lastName'], $_POST['firstName'], $_POST['email'], $_POST['password']))  { 
         // -------------------------------------------------------------------------------------------------
         //                      on verifie l existence d un utilisateur - condition email
         // -------------------------------------------------------------------------------------------------

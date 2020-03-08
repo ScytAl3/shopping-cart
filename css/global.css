@@ -9,20 +9,3 @@ body {
     padding-top: 50px;
     background-color: lightgray;
 }
-
-/*--------------------------------- 
-        Messages components
------------------------------------ */
-.show-bg {
-    background-color: lightsalmon;
-    border-radius: 10px;
-    font-size: 1.1em;
-    color: crimson;
-}
-
-.info-message-bg {
-    background-color: cornflowerblue;
-    border-radius: 10px;
-    font-size: 1.1em;
-    color: black;
-}

@@ -58,7 +58,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
             <div class="my-3 p-3">
                 <div class="text-center mx-auto">
                     <!-- message d information pour tester la connexion a la base de donnees -->
-                    <div class="info-message-bg">
+                    <div class="alert alert-info" role="alert">
                         <?php require 'pdo/pdo_db_connect.php'; 
                             // on instancie une connexion pour verifie s il n y a pas d erreurs avec les parametres de connexion
                             $pdo = my_pdo_connexxion();
@@ -67,13 +67,16 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                             } else {
                                 var_dump($pdo);
                             }
-                        ?>                            
+                        ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>                            
                     </div>
                     <!-- /message d information pour tester la connexion a la base de donnees -->                   
                     
                     <h2 class="display-4 font-weight-bold text-muted">Liste des produits disponibles</h2>                       
                     <!-- area pour afficher un message d erreur -->
-                    <div class="show-bg<?=($_SESSION['current']['page'] == $_SESSION['error']['page']) ? '' : 'visible'; ?> text-center mt-5">
+                    <div class="alert alert-danger <?=($_SESSION['error']['message'] != '') ? 'visible' : 'invisible'; ?> text-center mt-5" role="alert">
                         <p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
                     </div>
                     <!-- /area pour afficher un message d erreur lors du login -->
@@ -99,7 +102,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                         $productPicture = (($column['picture']) == '') ? 'empty_picture.jpg' : $column['picture'];
                 ?>
                 <!-- on recupere les valeurs des differents champs d une ligne d un produit-->             
-                <div class="col-sm-2 card border-secondary mx-1 mb-5 py-3">
+                <div class="col-8 col-sm-6- col-md-5 col-lg-3 col-xl-2 card border-secondary mx-1 mb-5 py-3">
                     <!-- photo du produit -->
                     <img class="card-img-top mx-auto" src="/img/product_pictures/<?=$productPicture ?>" alt="a product picture">
                     <!-- /photo du produit -->
@@ -127,13 +130,13 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                 } else {
                 ?>
             </div> 
-                    <!-- affiche un message pour dire qu il n y a pas encore de produits dans la base de donnees -->
-                    <div class="my-3">                                                                       
-                        <div class="mx-auto px-3 py-2 text-center info-message-bg">
-                            <h2 class="card-title">Il n'y a aucun produit à afficher pour le moment !</h2>
-                        </div>
-                    </div> 
-                    <!-- /affiche un message pour dire qu il n y a pas encore de produits dans la base de donnees -->
+                <!-- affiche un message pour dire qu il n y a pas encore de produits dans la base de donnees -->
+                <div class="my-3">                                                                       
+                    <div class="mx-auto px-3 py-2 text-center info-message-bg">
+                        <h2 class="card-title">Il n'y a aucun produit à afficher pour le moment !</h2>
+                    </div>
+                </div> 
+                <!-- /affiche un message pour dire qu il n y a pas encore de produits dans la base de donnees -->
                 <?php
                 }
                 ?>

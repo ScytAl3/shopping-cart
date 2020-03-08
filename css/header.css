@@ -28,3 +28,7 @@
 hr {
     border-top: 1px solid white !important;
 }
+
+.quote-text {
+    text-shadow: 2px 2px 6px #000;
+}
