@@ -1,6 +1,6 @@
 <!-- main Navigation -->
 <!-- si l utilisateur est un admin bg color : red, sinon  color : dark  -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top <?=($_SESSION['current']['userRole'] == 'Admin') ?  'bg-danger' :  'bg-dark'; ?>">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top <?=($_SESSION['current']['userRole'] == 'Admin') ?  'bg-dark' :  'bg-danger'; ?>">
     <div class="container">
         <!-- navbar brand & logo -->
         <a class="navbar-brand text-uppercase" href="/index.php">

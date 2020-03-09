@@ -84,18 +84,54 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
         <!--------------------------------------//------------------------------------------------
                             container pour afficher la presentation du site
         ------------------------------------------------------------------------------------------>           
-        <div class="mt-5 container">
-            <!-- titre de la page de presentation des produits & messages divers -->
-            <div class="my-3 p-3 text-center">
-                <h1 class="display-4 font-weight-bold text-muted mb-5">Présentation</h1>
-                <blockquote class="blockquote">
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elicerem ex te cogeremque, ut responderes, nisi vererer ne Herculem ipsum ea, quae pro salute gentium summo labore gessisset, voluptatis causa gessisse diceres. Sed tu, ut dignum est tua erga me et philosophiam voluntate ab adolescentulo suscepta, fac ut Metrodori tueare liberos. Erit enim mecum, si tecum erit. Bonum ipsum etiam quid esset, fortasse, si opus fuisset, definisses aut quod esset natura adpetendum aut quod prodesset aut quod iuvaret aut quod liberet modo. Cognitis autem rerum finibus, cum intellegitur, quid sit et bonorum extremum et malorum, inventa vitae via est conformatioque omnium officiorum, cum quaeritur, quo quodque referatur; Duo Reges: constructio interrete. Bonum ipsum etiam quid esset, fortasse, si opus fuisset, definisses aut quod esset natura adpetendum aut quod prodesset aut quod iuvaret aut quod liberet modo. Obsequar igitur voluntati tuae dicamque, si potero, rhetorice, sed hac rhetorica philosophorum, non nostra illa forensi, quam necesse est, cum populariter loquatur, esse interdum paulo hebetiorem.</p>
-                    <p class="text-justify">Itaque prima illa commendatio, quae a natura nostri facta est nobis, incerta et obscura est, primusque appetitus ille animi tantum agit, ut salvi atque integri esse possimus. Quid enim dicis omne animal, simul atque sit ortum, applicatum esse ad se diligendum esseque in se conservando occupatum? Sic, quod est extremum omnium appetendorum atque ductum a prima commendatione naturae, multis gradibus adscendit, ut ad summum perveniret, quod cumulatur ex integritate corporis et ex mentis ratione perfecta. Sed tamen omne, quod de re bona dilucide dicitur, mihi praeclare dici videtur. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? -delector enim, quamquam te non possum, ut ais, corrumpere, delector, inquam, et familia vestra et nomine.</p>
-
-                    <p class="text-justify">Dicis eadem omnia et bona et mala, quae quidem dicunt ii, qui numquam philosophum pictum, ut dicitur, viderunt: valitudinem, vires, staturam, formam, integritatem unguiculorum omnium bona, deformitatem, morbum, debilitatem mala. Si scieris, inquit Carneades, aspidem occulte latere uspiam, et velle aliquem inprudentem super eam assidere, cuius mors tibi emolumentum futura sit, improbe feceris, nisi monueris ne assidat, sed inpunite tamen; Nec enim, cum tua causa cui commodes, beneficium illud habendum est, sed faeneratio, nec gratia deberi videtur ei, qui sua causa commodaverit. Non enim in ipsa sapientia positum est beatum esse, sed in iis rebus, quas sapientia comparat ad voluptatem. De maximma autem re eodem modo, divina mente atque natura mundum universum et eius maxima partis administrari. Facit enim ille duo seiuncta ultima bonorum, quae ut essent vera, coniungi debuerunt; Nihil enim arbitror esse magna laude dignum, quod te praetermissurum credam aut mortis aut doloris metu. Si sapiens, ne tum quidem miser, cum ab Oroete, praetore Darei, in crucem actus est. Principiis autem a natura datis amplitudines quaedam bonorum excitabantur partim profectae a contemplatione rerum occultiorum, quod erat insitus menti cognitionis amor, e quo etiam rationis explicandae disserendique cupiditas consequebatur; Quo modo autem philosophus loquitur?</p>                    
-                </blockquote>
+        <!-- titre de la page de presentation -->
+        <div class="my-3 p-3 text-center">
+            <h1 class="display-4 font-weight-bold text-muted mb-5">Présentation</h1> 
+        </div>
+        <!-- /titre de la page de presentation -->
+        <div class="bgimg-1 parallax">
+            <div class="caption">
+                <span class="border">LOREM CAPTION</span>
             </div>
-        </div>  
+        </div>
+        <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+            <h3 style="text-align:center;">Lorem ipsum</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit expedita, laborum accusamus optio ex quas. Modi dolores, fuga blanditiis corrupti quam laudantium delectus velit ducimus eos? Maxime cupiditate laborum cumque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur perferendis, sit quas rerum ipsum corporis quod tenetur magni mollitia veniam, rem quo fugiat cupiditate, exercitationem quisquam. Quo dolorum mollitia cumque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit sed quidem odio accusamus error debitis consequuntur quam harum, recusandae dolorum expedita quo dolore laboriosam veniam culpa. Quia nam quasi labore?</p>
+        </div>
+        <div class="bgimg-2 parallax">
+            <div class="caption">
+                <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">LOREM CAPTION</span>
+            </div>
+        </div>
+        <div style="position:relative;">
+            <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur nihil fuga molestiae atque adipisci. Id adipisci cupiditate aliquam impedit vel quae harum optio explicabo qui blanditiis! Perspiciatis porro excepturi laborum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus qui voluptate ipsa veniam perferendis quo eveniet sed quidem exercitationem minima perspiciatis ad possimus ut odio, cupiditate porro, a repellendus dolor.</p>
+            </div>
+        </div>
+        <div class="bgimg-3 parallax">
+            <div class="caption">
+                <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">LOREM CAPTION</span>
+            </div>
+        </div>
+        <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+            <h3 style="text-align:center;">Lorem ipsum</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit expedita, laborum accusamus optio ex quas. Modi dolores, fuga blanditiis corrupti quam laudantium delectus velit ducimus eos? Maxime cupiditate laborum cumque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur perferendis, sit quas rerum ipsum corporis quod tenetur magni mollitia veniam, rem quo fugiat cupiditate, exercitationem quisquam. Quo dolorum mollitia cumque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit sed quidem odio accusamus error debitis consequuntur quam harum, recusandae dolorum expedita quo dolore laboriosam veniam culpa. Quia nam quasi labore?</p>
+        </div>
+        <div class="bgimg-4 parallax">
+            <div class="caption">
+                <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">LOREM CAPTION</span>
+            </div>
+        </div>
+        <div style="position:relative;">
+            <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur nihil fuga molestiae atque adipisci. Id adipisci cupiditate aliquam impedit vel quae harum optio explicabo qui blanditiis! Perspiciatis porro excepturi laborum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus qui voluptate ipsa veniam perferendis quo eveniet sed quidem exercitationem minima perspiciatis ad possimus ut odio, cupiditate porro, a repellendus dolor.</p>
+            </div>
+        </div>
+        <div class="bgimg-1 parallax">
+            <div class="caption">
+                <span class="border">END !!!</span>
+            </div>
+        </div>
          <!----------------------------------------------------------------------------------------
                             /container pour afficher la presentation du site
         -----------------------------------------//------------------------------------------------->   

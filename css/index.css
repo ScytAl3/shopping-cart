@@ -2,9 +2,14 @@
     Created on : 03 mars 2020
     Author     : Franck J.
 */
+body,
+html {
+    height: 100%;
+}
+
 .parallax {
-    /*position: relative;*/
-    opacity: 0.65;
+    position: relative;
+    opacity: 0.85;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
@@ -12,13 +17,8 @@
     background-size: cover;
 }
 
-.bgimg-1 {
-    background-image: url("/img/homepage/two-person-in-bar-stools.jpg");
-    min-height: 100%;
-}
-
 .caption {
-    /*position: absolute;*/
+    position: absolute;
     left: 0;
     top: 50%;
     width: 100%;
@@ -34,7 +34,22 @@
     letter-spacing: 10px;
 }
 
+.bgimg-1 {
+    background-image: url("/img/homepage/voodoo-Ranger.png");
+    min-height: 100%;
+}
+
 .bgimg-2 {
-    background-image: url("/img/homepage/barrels-on-trailers.jpg");
+    background-image: url("/img/homepage/barrels-on-trailers.png");
+    min-height: 400px;
+}
+
+.bgimg-3 {
+    background-image: url("/img/homepage/beer-from-barrel.png");
+    min-height: 400px;
+}
+
+.bgimg-4 {
+    background-image: url("/img/homepage/glass-beer-on-bar.png");
     min-height: 400px;
 }
