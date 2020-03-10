@@ -26,20 +26,35 @@
             //                                  si  - password valid
             // ---------------------------------------------------------------------------------
             if ($testPwd) {
+                // on stocke l identifiant temporaire pour verifier si l utilisateur a cree un panier avant de s authentifier ou de creer un compte
+                $userTemp = $_SESSION['current']['userId'];
+                // ----------------------------------------------------------------------------------------------------
+                //           verifie l existence eventuelle des panier associés a l userTemp
+                // ----------------------------------------------------------------------------------------------------
+                $cartList = verifyCartUserTemp($userTemp);
+                //
+                //var_dump($cartList); die;
+                //
+                // ---------------------------------------------------------------------------------
+                //                             si  - la fonction retourne un resultat
+                // ---------------------------------------------------------------------------------
+                if ($cartList) {
+                    // ----------------------------------------------------------------------------------------------------
+                    //                               mise a jour de l userTemp associe aux paniers
+                    // ----------------------------------------------------------------------------------------------------
+                    //$msgDebug = array();
+                    foreach($cartList as $cartId) {
+                        $updateUserTemp = updateCartUserTemp($emailValid['userId'], $cartId['paniersId']);
+                        //array_push($msgDebug, $updateUserTemp);
+                    }
+                    //$_SESSION['debugTemp'] = $msgDebug; 
+                }
                 // on enregistre comme variables de session userName - le nom et le prenom concatene        
                 $firstName = $emailValid['userFirstName'];
                 $lastName = $emailValid['userLastName'];
                 $_SESSION['current']['userName'] = $firstName.' '.$lastName;
                 // on enregistre comme variables de session - le role 
-                $_SESSION['current']['userRole'] = $emailValid['userRole']; 
-                // on stocke l identifiant temporaire pour verifier si l utilisateur a cree un panier avant de s authentifier ou de creer un compte
-                // ****************************************************************************
-                //                              TODO check si panier avec id userTemp
-                // ****************************************************************************
-                $userTemp = $_SESSION['current']['userId'];
-                // ****************************************************************************
-                //                              TODO check si panier avec id userTemp
-                // ****************************************************************************
+                $_SESSION['current']['userRole'] = $emailValid['userRole'];                 
                 // on enregistre comme variables de session - le numero d identifiant
                 $_SESSION['current']['userId'] = $emailValid['userId'];                
                 // on creer une variable de session login en cours

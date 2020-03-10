@@ -5,6 +5,8 @@
 body,
 html {
     height: 100%;
+    background-color: #c98224;
+    color: #2b272b
 }
 
 .parallax {
@@ -52,4 +54,18 @@ html {
 .bgimg-4 {
     background-image: url("/img/homepage/glass-beer-on-bar.png");
     min-height: 400px;
+}
+
+.text-light-bg {
+    text-align: center;
+    padding: 50px 80px;
+    text-align: justify;
+}
+
+.text-dark-bg {
+    color: #ddd;
+    background-color: #282E34;
+    text-align: center;
+    padding: 50px 80px;
+    text-align: justify;
 }
