@@ -4,8 +4,8 @@
     <div class="container">
         <!-- navbar brand & logo -->
         <a class="navbar-brand text-uppercase" href="/index.php">
-        <img src="/img/header/beer-bottle.png" width="40" height="40" class="d-inline-block align-top" alt="nav logo">
-        My Fucking Shop
+        <img src="/img/header/octopus-logo.png" width="50" height="50" class="d-inline-block align-top" alt="nav logo">
+        the drunken octopus
         </a>
         <!-- /navbar brand & logo -->
         <!-- collapse button -->
@@ -16,8 +16,8 @@
         <!-- collapsible content -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="/index.php">Home <span class="sr-only">(current)</span></a></li>
-                <li class="nav-item active"><a class="nav-link" href="/shop.php">Nos Produits <span class="sr-only"></span></a></li>
+                <li class="nav-item active"><a class="nav-link" href="/index.php">Accueil <span class="sr-only">(current)</span></a></li>
+                <li class="nav-item active"><a class="nav-link" href="/shop.php">Beers <span class="sr-only"></span></a></li>
                 <li class="nav-item active text-uppercase <?=($_SESSION['current']['userRole'] == 'Admin') ? 'visible ' : 'invisible ' ?>"><a class="nav-link" href="/admin/admin_products.php">God mod</a></li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -34,11 +34,11 @@
 <!-- header avec une image pleine en background centree verticalement -->
 <header class="my-header-bg">
     <div class="row mx-auto">
-        <div class="col-5 line"><hr></div>
-        <div class="col-2 logo">
-            <img src="/img/header/beer-bottle.svg" width="30" height="30" class="d-inline-block align-top" alt="header logo">
+        <div class="col-5 d-none d-lg-block line px-0"><hr></div>
+        <div class="col-2 logo mx-auto px-0">
+            <img src="/img/header/octopus-logo.svg" width="100" height="100" class="d-inline-block align-top" alt="header logo">
         </div>
-        <div class="col-5 line"><hr></div>
+        <div class="col-5 d-none d-lg-block line px-0"><hr></div>
     </div>
     <div class="container h-100">
         <div class="row h-75 align-items-center">

@@ -10,25 +10,20 @@
     color: #fc9816;
 }
 
+.quote-text {
+    text-shadow: 2px 2px 3px #000;
+}
+
 .logo {
-    color: #fff;
-    font-weight: 800;
-    font-size: 14pt;
-    padding: 35px;
+    padding-top: 35px;
     text-align: center;
 }
 
 .line {
-    padding-top: 30px;
-    white-space: no-wrap;
-    overflow: hidden;
-    text-align: center;
+    padding-top: 65px;
+    x
 }
 
 hr {
-    border-top: 1px solid white !important;
-}
-
-.quote-text {
-    text-shadow: 2px 2px 3px #000;
+    border-top: 1px solid #fc9816 !important;
 }
