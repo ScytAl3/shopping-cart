@@ -1,10 +1,10 @@
 <!-- main Navigation -->
 <!-- si l utilisateur est un admin bg color : red, sinon  color : dark  -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top <?=($_SESSION['current']['userRole'] == 'Admin') ?  'bg-dark' :  'bg-danger'; ?>">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top <?=($_SESSION['current']['userRole'] == 'Admin') ?  'bg-dark' :  'myNavbar-bg'; ?>">
     <div class="container">
         <!-- navbar brand & logo -->
         <a class="navbar-brand text-uppercase" href="/index.php">
-        <img src="/img/header/octopus-logo.png" width="50" height="50" class="d-inline-block align-top" alt="nav logo">
+        <img src="/img/header/octopus-logo.png" width="50" height="50" class="d-inline-block align-top" alt="drunken octopus logo">
         the drunken octopus
         </a>
         <!-- /navbar brand & logo -->
@@ -36,7 +36,7 @@
     <div class="row mx-auto">
         <div class="col-5 d-none d-lg-block line px-0"><hr></div>
         <div class="col-2 logo mx-auto px-0">
-            <img src="/img/header/octopus-logo.svg" width="100" height="100" class="d-inline-block align-top" alt="header logo">
+            <img src="/img/header/octopus-logo.svg" width="100" height="100" class="d-inline-block align-top" alt="header drunken octopus logo">
         </div>
         <div class="col-5 d-none d-lg-block line px-0"><hr></div>
     </div>

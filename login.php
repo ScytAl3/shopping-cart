@@ -59,10 +59,13 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                         <div class="text-center mx-auto">
                             <h2 class="display-4 font-weight-bold text-muted">Veuillez vous connecter</h2>                       
                             <!-- area pour afficher un message d erreur lors d un mauvais login : pseudo inexistant ou erreud password -->
-                            <div class="alert alert-danger <?=($_SESSION['error']['message'] != '') ? 'visible' : 'invisible'; ?> text-center mt-5" role="alert">
+                            <div class="alert alert-danger <?=($_SESSION['error']['message'] != '') ? 'd-block' : 'd-none'; ?> text-center mt-5" role="alert">
                                 <p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
                             </div>
                             <!-- /area pour afficher un message d erreur lors du login : pseudo inexistant ou erreud password -->
+                            <!-- logo du site -->
+                                <img class="mt-3" src="/img/default/octopus-logo-form.png" alt="site logo" width="100" height="100">
+                            <!-- /logo du site --> 
                         </div>
                         <!-- /titre de la section du formulaire -->
 
@@ -70,10 +73,8 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                                                         debut du container du formulaire de login
                         ---------------------------------------------------------------------------------------------->
                         <div class="<?=($_SESSION['current']['login'])? 'invisible' : 'visible' ; ?>">
-                            <form class="form-signin p-5" method="POST" action="form_processing/login_process.php">
-                                <!-- logo du site -->
-                                <img class="mb-4" src="/img/header/beer-bottle.png" alt="site logo" width="100" height="100">
-                                <!-- email input -->
+                            <form class="form-signin p-5" method="POST" action="form_processing/login_process.php">      
+                                <!-- email input -->                          
                                 <div class="input-group margin-bottom-sm">
                                     <input class="form-control fa fa-envelope" type="text" name="email" id="email" placeholder="&#xf0e0; Votre adresse email"  required autofocus="">
                                 </div>

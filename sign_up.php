@@ -55,16 +55,17 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 
 				<!-- titre de la section du formulaire -->              
 				<div class="py-2 text-center">
-					<h1 class="text-muted"><strong>INSCRIPTION</strong></h1>
-					<!-- logo du site -->
-					<div class="text-center">
-						<img class="mb-4" src="/img/header/beer-bottle.png" alt="site logo" width="100" height="100">
-					</div>
+					<h1><strong>INSCRIPTION</strong></h1>
 					<!-- area pour afficher un message d erreur lors de la creation -->
-					<div class="alert alert-danger <?=($_SESSION['error']['message'] != '') ? 'visible' : 'invisible'; ?> text-center mt-5" role="alert">
+					<div class="alert alert-danger <?=($_SESSION['error']['message'] != '') ? 'd-block' : 'd-none'; ?> text-center mt-5" role="alert">
 						<p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
 					</div>
 					<!-- /area pour afficher un message d erreur lors de la creation -->
+					<!-- logo du site -->
+					<div class="text-center mt-3">
+						<img class="d-inline-block align-top mb-4" src="/img/default/octopus-logo-form.png" alt="site logo" width="100" height="100">
+					</div>
+					<!-- logo du site -->
 				</div>
                 <!-- /titre de la section du formulaire -->
 
