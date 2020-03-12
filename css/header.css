@@ -2,15 +2,17 @@
     Created on : 03 mars 2020
     Author     : Franck J.
 */
-.myNavbar-bg {
+/*--------------------------------
+                navbar
+----------------------------------*/
+.navbar-custom-bg {
     background-color: #cc3423;
     border-color: #94261a;
 }
 
-.myNav-logo {
-    color: white;
-}
-
+/*--------------------------------
+                header
+----------------------------------*/
 .my-header-bg {
     height: 50vh;
     min-height: 500px;

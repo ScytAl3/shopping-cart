@@ -35,9 +35,24 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 		<title>Gestion panier - Panier en cours</title>
 		<meta name="author" content="Franck Jakubowski">
 		<meta name="description" content="Un mini site de produits à ajouter à un panier.">
-		<!-- 
-            favicons
-         -->
+		<!--  favicons -->
+        <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
 		<!-- bootstrap stylesheet -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -63,9 +78,9 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
             <div class="my-3 py-3">
                 <div class="text-center mx-auto">                                  
                     <!-- titre de la page de presentation des produits -->
-                    <h2 class="display-4 font-weight-bold text-muted">Votre panier</h2>                       
+                    <h2 class="display-4 font-weight-bold">Votre panier</h2>                       
                     <!-- area pour afficher un message d erreur -->
-                    <div class="alert alert-danger <?=($_SESSION['error']['message'] != '') ? 'visible' : 'invisible'; ?> text-center mt-5" role="alert">
+                    <div class="alert alert-danger <?=($_SESSION['error']['message'] != '') ? 'd-block' : 'd-none'; ?> text-center mt-5" role="alert">
                         <p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
                     </div>
                     <!-- /area pour afficher un message d erreur lors du login -->
@@ -117,21 +132,21 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                 ---------------------------------------------------------------------------------->               
                 <div class="row card-header text-white bg-info mb-3">
                     <!-- photo produit -->
-                    <div class="">
+                    <div class="mx-auto">
                         <img class="min-picture" src="/img/product_pictures/<?=(is_null($productPicture)) ? 'empty_picture.jpg' : $productPicture ?>" alt="Photo du produit">         
                     </div>
                     <!-- /photo produit -->
 
                     <!-- nom produit -->
-                    <div class="col-md align-self-center">
+                    <div class="col-md align-self-center text-center">
                         <h2 class="card-title"><strong><?=$productName ?></strong></h2>
                     </div>
                     <!-- /nom produit -->
 
                     <!-- selection quantite -->
-                    <form class="form-inline" action="/form_processing/cart_quantity_process.php" method="POST">
-                        <div class="form-group mx-sm-3 mb-2">
-                            <label for="quantity" class="col-form-label mr-1">Quantity</label>                        
+                    <form class="form-row mx-auto" action="/form_processing/cart_quantity_process.php" method="POST">
+                        <div class="form-group mr-3">
+                            <label class="col-form-label mr-1" for="quantity">Quantity</label>                        
                             <input class="form-control " type="number" name="quantity" id="quantity" min="1" max="<?=$productStock ?>" value="<?=$productQuantity ?>"  style="text-align:center;">
                         </div>
                         <!--------------------------------------------------//--------------------------------------------------------
@@ -140,22 +155,21 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                         <!-- parametre pour le message qui sera retourne par la page cart_quantity_process.php -->
                         <input type="hidden" id="produitNom" name="produitNom" value="<?=$productName ?>">
                         <!--        passage de parametre cache pour le traitement de la modification de la quantite     
-                        ----------------------------------------------------//-------------------------------------------------------->
-
+                        ----------------------------------------------------//-------------------------------------------------------->                    
                         <!-- boutons pour modifier la quantite d un produit du panier -->
-                        <button class ="btn btn-primary  mb-2" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                        <button class ="btn btn-primary align-self-center" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i></button>
                         <!-- /boutons pour modifier la quantite d un produit du panier -->                    
                     </form>
                     <!-- /selection quantite -->
 
                     <!-- prix du produit -->
-                    <div  class="col-md align-self-center">
+                    <div  class="col-md align-self-center mx-auto">
                         <h2 class="text-center"><?=$productTotalPrice ?> €</h2>
                     </div>
                     <!-- /prix du produit --> 
 
                     <!-- boutons pour supprimer un produit du panier -->
-                    <div  class="align-self-center">
+                    <div  class="align-self-center mx-auto">
                         <a class ="btn btn-danger" href="/form_processing/cart_delete_process.php?productId=<?=$productId ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                     </div>
                     <!-- /boutons pour supprimer un produit du panier -->                                           
