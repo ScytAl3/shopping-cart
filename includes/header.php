@@ -1,10 +1,10 @@
-<!-- main Navigation -->
+<!-- main navigation -->
 <!-- si l utilisateur est un admin bg color : red, sinon  color : dark  -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-0 <?=($_SESSION['current']['userRole'] == 'Admin') ?  'bg-dark' :  'navbar-custom-bg'; ?>">
     <div class="container">
         <!-- navbar brand & logo -->
         <a class="navbar-brand text-uppercase" href="/index.php">
-        <img src="/img/header/octopus-logo.png" width="50" height="50" class="d-inline-block align-center" alt="drunken octopus logo">
+        <img class="d-inline-block align-center" src="/img/header/octopus-logo.png" width="50" height="50" alt="drunken octopus logo">
         the drunken octopus
         </a>
         <!-- /navbar brand & logo -->
@@ -26,7 +26,7 @@
                 <li class="nav-item active"><a class="nav-link" href="<?=($_SESSION['current']['login']) ? '/logout.php' : '/login.php' ?>"><i class="fa <?=($_SESSION['current']['login']) ? 'fa-sign-out' : 'fa-sign-in' ?>" aria-hidden="true"></i> <?=($_SESSION['current']['login']) ? 'Logout' : 'Login' ?></a></li>
             </ul>
             <!-- affiche un lien vers le panier avec le nombre de produits ajoutes -->
-            <a class="btn btn-outline-success my-2 my-sm-0" href="/panier.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <strong><span class="badge badge-light"><?=$max=sizeof($_SESSION['panier']['id_product']) ?></strong></span></a>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="/panier.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <strong><span class="badge badge-light badge-pill"><?=$max=sizeof($_SESSION['panier']['id_product']) ?></strong></span></a>
         </div>
         <!-- collapsible content -->
     </div>
@@ -50,4 +50,4 @@
     </div>
 </header>
 <!-- /header avec une image pleine en background centree verticalement -->
-<!-- /main Navigation -->
+<!-- /main navigation -->

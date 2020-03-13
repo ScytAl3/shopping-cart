@@ -31,23 +31,13 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 		<title>Gestion panier - Liste des produits</title>
 		<meta name="author" content="Franck Jakubowski">
 		<meta name="description" content="Un mini site de produits à ajouter à un panier.">
-		<!--  favicons -->
-        <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+		<!--  favicons -->      
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/favicon/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <link rel="manifest" href="/favicon/site.webmanifest">
+        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
 		<!-- bootstrap stylesheet -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -58,17 +48,20 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 		<link href="css/global.css" rel="stylesheet" type="text/css">
         <!-- includes stylesheet -->
         <link href="css/header.css" rel="stylesheet" type="text/css">
+        <link href="css/footer.css" rel="stylesheet" type="text/css">
+        <!-- font import -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"> 
     </head>    
     
 	<body>   
         <!-- import du header -->
         <?php include 'includes/header.php'; ?>
         <!-- /import du header -->
+
         <!--------------------------------------//------------------------------------------------
                                     container pour afficher la liste des produits
         ------------------------------------------------------------------------------------------>           
-        <div class="mt-5 container-fluid"> 
-
+        <div class="mt-5 container-fluid">
             <!-- titre de la page de presentation des produits & messages divers -->
             <div class="my-3 p-3">
                 <div class="text-center mx-auto">
@@ -83,9 +76,9 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                                 var_dump($pdo);
                             }
                         ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>                            
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>                            
                     </div>
                     <!-- /message d information pour tester la connexion a la base de donnees -->                   
                     
@@ -135,16 +128,18 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                     <!-- bouton pour ajouter le produit selectionne --> 
                         <a class ="btn btn-primary" href="/form_processing/cart_add_process.php?productId=<?=$column['produitId']; ?>&productPrice=<?=$column['produitPrix']; ?>">Ajouter au panier</a>
                     <!-- /bouton pour ajouter le produit selectionne --> 
-                </div>             
+                </div>          
                 <?php
                 } 
+                ?>                                 
+            </div> 
+                <?php
                 //----------------------------------------------------------------------------
                 //            /script php pour recuperer tous les produits
-                //-----------------------------------//---------------------------------------- 
+                //-----------------------------------//----------------------------------------                 
                 // si la requete ne retourne rien
                 } else {
                 ?>
-            </div> 
                 <!-- affiche un message pour dire qu il n y a pas encore de produits dans la base de donnees -->
                 <div class="my-3">                                                                       
                     <div class="mx-auto px-3 py-2 text-center info-message-bg">
@@ -152,16 +147,19 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                     </div>
                 </div> 
                 <!-- /affiche un message pour dire qu il n y a pas encore de produits dans la base de donnees -->
-                <?php
-                }
-                ?>
-                              
-        </div>        
-         <!----------------------------------------------------------------------------------------
-                                /container pour afficher la liste des produits
-        -----------------------------------------//------------------------------------------------->   
+            <?php
+            }
+            ?>                              
+        </div>          
+            <!----------------------------------------------------------------------------------------
+                                    /container pour afficher la liste des produits
+            -----------------------------------------//------------------------------------------------->   
+
+        <!-- import du header -->
+        <?php include 'includes/footer.php'; ?>
+        <!-- /import du header -->
 <!------------------------------------------>
-    <?=var_dump($_SESSION) ?>
+    <!--?=var_dump($_SESSION) ?-->
 <!------------------------------------------>
         <!-- import scripts -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

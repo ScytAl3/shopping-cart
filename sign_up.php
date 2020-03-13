@@ -29,23 +29,13 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 		<title>Gestion panier - Inscription</title>
 		<meta name="author" content="Franck Jakubowski">
 		<meta name="description" content="Un mini site d'actualités consultable par tous les membres mais ou seul un admin est autorisé à poster.">
-		<!--  favicons -->
-        <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+		<!--  favicons -->      
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/favicon/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <link rel="manifest" href="/favicon/site.webmanifest">
+        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
 		<!-- bootstrap stylesheet -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -56,16 +46,20 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 		<link href="css/global.css" rel="stylesheet" type="text/css">
         <!-- includes stylesheet -->
         <link href="css/header.css" rel="stylesheet" type="text/css">
+        <link href="css/footer.css" rel="stylesheet" type="text/css">
+        <!-- font import -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"> 
     </head>    
     
 	<body>   
         <!-- import du header -->
         <?php include 'includes/header.php'; ?>
-        <!-- /import du header -->
+		<!-- /import du header -->
+		
         <!-----------------------------------//-----------------------------------------
                  	debut du container global du formulaire d inscription
         -------------------------------------------------------------------------------->
-        <div class="d-md-flex flex-md-equal w-100 mt-5 pl-md-3 justify-content-center">						            
+        <div class="d-md-flex flex-md-equal w-100 my-5 pl-md-3 justify-content-center">						            
             <div class="mr-md-3 px-md-5 col-md-8 bg-info">  
 
 				<!-- titre de la section du formulaire -->              
@@ -146,8 +140,12 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
         <!------------------------------------------------------------------------------
                  	/debut du container global du formulaire d inscription
 		-------------------------------------//----------------------------------------->
+		
+        <!-- import du header -->
+        <?php include 'includes/footer.php'; ?>
+        <!-- /import du header -->
 <!------------------------------------------>
-    <?=var_dump($_SESSION) ?>
+    <!--?=var_dump($_SESSION) ?-->
 <!------------------------------------------>
         <!-- import scripts -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

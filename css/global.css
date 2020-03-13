@@ -3,10 +3,12 @@
     Author     : Franck J.
 */
 /*------------------------------- 
-        Main components
+        main components
 --------------------------------- */
 body {
     padding-top: 50px;
     background-color: lightgray;
-    color: #2b272b
+    color: #2b272b;
+    font-family: 'Oswald', sans-serif;
+    /* font import */
 }

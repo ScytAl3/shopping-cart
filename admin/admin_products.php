@@ -18,7 +18,8 @@ $_SESSION['current']['page'] = 'adminProduct';
 //----------------------------//----------------------------
 //----------------------------//----------------------------
 //                     ERROR MANAGEMENT
-
+// on efface le message d erreur d une autre page
+if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['error']['message'] = '';}
 //                     ERROR MANAGEMENT
 //----------------------------//----------------------------
 // ----------------------------------------------------------
@@ -34,24 +35,35 @@ $_SESSION['current']['page'] = 'adminProduct';
 		<title>Admin - Gestion des produits</title>
 		<meta name="author" content="Franck Jakubowski">
 		<meta name="description" content="Un mini site de produits à ajouter à un panier.">
-		<!-- 
-            favicons
-         -->
+		<!--  favicons -->       
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/favicon/site.webmanifest">
+        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
 		<!-- bootstrap stylesheet -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- font awesome stylesheet -->
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">        
 		<!-- default stylesheet -->
+        <link href="../css/global.css" rel="stylesheet" type="text/css">
+        <!-- page stylesheet -->
 		<link href="../css/admin_products.css" rel="stylesheet" type="text/css">
         <!-- includes stylesheet -->
         <link href="../css/header.css" rel="stylesheet" type="text/css">
+        <link href="../css/footer.css" rel="stylesheet" type="text/css">
+        <!-- font import -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"> 
     </head>    
     
 	<body>   
         <!-- import du header -->
         <?php include '../includes/header.php'; ?>
         <!-- /import du header -->
+        
         <!--------------------------------------//------------------------------------------------
                         container pour afficher la liste des produits a administrer
         ------------------------------------------------------------------------------------------>           
@@ -61,7 +73,7 @@ $_SESSION['current']['page'] = 'adminProduct';
                 <div class="text-center mx-auto">
                     <h2 class="display-4 font-weight-bold text-muted">Liste des produits</h2>                       
                     <!-- area pour afficher un message d erreur -->
-                    <div class="show-bg<?=($_SESSION['current']['page'] == $_SESSION['error']['page']) ? '' : 'visible'; ?> text-center mt-5">
+                    <div class="alert alert-danger <?=($_SESSION['error']['message'] != '') ? 'd-block' : 'd-none'; ?> text-center mt-5" role="alert">
                         <p class="lead mt-2"><span><?=$_SESSION['error']['message'] ?></span></p>
                     </div>
                     <!-- /area pour afficher un message d erreur lors du login -->
@@ -71,7 +83,7 @@ $_SESSION['current']['page'] = 'adminProduct';
             
             <!-- bouton qui dirige vers le formulaire admin pour creer un produit -->
             <div class="my-5 mx-auto">
-                <a class="btn btn-success btn-lg btn-block" href="/admin_page/admin_product_create.php">- Ajouter un produit -</a>
+                <a class="btn btn-success btn-lg btn-block" href="admin_product_create.php">- Ajouter un produit -</a>
             </div> 
             <!-- /bouton qui dirige vers le formulaire admin pour creer unproduit -->
             
@@ -100,7 +112,7 @@ $_SESSION['current']['page'] = 'adminProduct';
                                 <!-- boutons pour modifier ou supprimer un produit --> 
                                 <div class="d-flex ml-auto align-self-center">
                                     <a class="btn btn-primary" href="admin_product_edit.php?productId=<?=$column['produitId'] ?>">Edit</a>
-                                    <form method="post" action="/forms_processing/admin_product_delete_process.php" onsubmit=" return confirm('are you really sure')">
+                                    <form method="post" action="/form_processing/admin_product_delete_process.php" onsubmit=" return confirm('are you really sure')">
                                         <!-- passage de l identifiant du produit en hidden pour le traitement de la suppression -->
                                         <input name="productId" type="hidden" value="<?=$column['produitId']; ?>">
                                         <button class="btn btn-danger ml-1">Delete</button>
@@ -132,9 +144,12 @@ $_SESSION['current']['page'] = 'adminProduct';
         </div>        
          <!----------------------------------------------------------------------------------------
                         /container pour afficher la liste des produits a administrer
-        -----------------------------------------//------------------------------------------------->   
+        -----------------------------------------//------------------------------------------------->
+        <!-- import du header -->
+        <?php include '../includes/footer.php'; ?>
+        <!-- /import du header -->
 <!------------------------------------------>
-    <?=var_dump($_SESSION) ?>
+    <!--?=var_dump($_SESSION) ?-->
 <!------------------------------------------>
         <!-- import scripts -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

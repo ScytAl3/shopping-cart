@@ -61,23 +61,13 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 		<title>Gestion panier - Liste des produits</title>
 		<meta name="author" content="Franck Jakubowski">
 		<meta name="description" content="Un mini site de produits à ajouter à un panier.">
-		<!--  favicons -->
-        <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+		<!--  favicons -->       
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/favicon/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <link rel="manifest" href="/favicon/site.webmanifest">
+        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
 		<!-- bootstrap stylesheet -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -90,12 +80,16 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 		<link href="css/index.css" rel="stylesheet" type="text/css">
         <!-- includes stylesheet -->
         <link href="css/header.css" rel="stylesheet" type="text/css">
+        <link href="css/footer.css" rel="stylesheet" type="text/css">
+        <!-- font import -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"> 
     </head>    
     
 	<body>   
         <!-- import du header -->
         <?php include 'includes/header.php'; ?>
         <!-- /import du header -->
+        
         <!--------------------------------------//------------------------------------------------
                             container pour afficher la presentation du site
         ------------------------------------------------------------------------------------------>           
@@ -113,7 +107,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                 </div>                
         </div>
         <div class="container text-light-bg">
-            <h3 style="text-align:center;">Lorem ipsum</h3>
+            <h3 class="text-center">Lorem ipsum</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit expedita, laborum accusamus optio ex quas. Modi dolores, fuga blanditiis corrupti quam laudantium delectus velit ducimus eos? Maxime cupiditate laborum cumque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur perferendis, sit quas rerum ipsum corporis quod tenetur magni mollitia veniam, rem quo fugiat cupiditate, exercitationem quisquam. Quo dolorum mollitia cumque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit sed quidem odio accusamus error debitis consequuntur quam harum, recusandae dolorum expedita quo dolore laboriosam veniam culpa. Quia nam quasi labore?</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non autem hoc: igitur ne illud quidem. Inde igitur, inquit, ordiendum est. Vitiosum est enim in dividendo partem in genere numerare. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Nec vero sum nescius esse utilitatem in historia, non modo voluptatem. Cuius ad naturam apta ratio vera illa et summa lex a philosophis dicitur. Sit enim idem caecus, debilis. Duo Reges: constructio interrete. Nobis Heracleotes ille Dionysius flagitiose descivisse videtur a Stoicis propter oculorum dolorem. At enim hic etiam dolore. Quae fere omnia appellantur uno ingenii nomine, easque virtutes qui habent, ingeniosi vocantur. Habent enim et bene longam et satis litigiosam disputationem. </p>
         </div>        
@@ -135,7 +129,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
             </div>
         </div>
         <div class="container text-light-bg">
-            <h3 style="text-align:center;">Lorem ipsum</h3>
+            <h3 class="text-center">Lorem ipsum</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit expedita, laborum accusamus optio ex quas. Modi dolores, fuga blanditiis corrupti quam laudantium delectus velit ducimus eos? Maxime cupiditate laborum cumque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur perferendis, sit quas rerum ipsum corporis quod tenetur magni mollitia veniam, rem quo fugiat cupiditate, exercitationem quisquam. Quo dolorum mollitia cumque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit sed quidem odio accusamus error debitis consequuntur quam harum, recusandae dolorum expedita quo dolore laboriosam veniam culpa. Quia nam quasi labore?</p>
         </div>
         <div class="bgimg-4 parallax">
@@ -177,8 +171,12 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
          <!----------------------------------------------------------------------------------------
                             /container pour afficher la presentation du site
         -----------------------------------------//------------------------------------------------->   
+
+        <!-- import du header -->
+        <?php include 'includes/footer.php'; ?>
+        <!-- /import du header -->
 <!------------------------------------------>
-    <?=var_dump($_SESSION) ?>
+    <!--?=var_dump($_SESSION) ?-->
 <!------------------------------------------>
         <!-- import scripts -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
