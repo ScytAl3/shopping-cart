@@ -127,7 +127,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                 <div class="row card-header text-white bg-info mb-3">
                     <!-- photo produit -->
                     <div class="mx-auto">
-                        <img class="min-picture" src="/img/product_pictures/<?=(is_null($productPicture)) ? 'empty_picture.jpg' : $productPicture ?>" alt="Photo du produit">         
+                        <img class="min-picture" src="img/product_pictures/<?=(is_null($productPicture)) ? 'empty_picture.jpg' : $productPicture ?>" alt="Photo du produit">         
                     </div>
                     <!-- /photo produit -->
 
@@ -138,7 +138,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                     <!-- /nom produit -->
 
                     <!-- selection quantite -->
-                    <form class="form-row mx-auto" action="/form_processing/cart_quantity_process.php" method="POST">
+                    <form class="form-row mx-auto" action="form_processing/cart_quantity_process.php" method="POST">
                         <div class="form-group mr-3">
                             <label class="col-form-label mr-1" for="quantity">Quantity</label>                        
                             <input class="form-control " type="number" name="quantity" id="quantity" min="1" max="<?=$productStock ?>" value="<?=$productQuantity ?>"  style="text-align:center;">
@@ -164,7 +164,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 
                     <!-- boutons pour supprimer un produit du panier -->
                     <div  class="align-self-center mx-auto">
-                        <a class ="btn btn-danger" href="/form_processing/cart_delete_process.php?productId=<?=$productId ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        <a class ="btn btn-danger" href="form_processing/cart_delete_process.php?productId=<?=$productId ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                     </div>
                     <!-- /boutons pour supprimer un produit du panier -->                                           
                 </div>
@@ -200,7 +200,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 
                 <!-- bouton pour valider le panier --> 
                 <div class="row">                
-                    <a type="submit" class="btn btn-success btn-lg btn-block" href="/form_processing/cart_checkout_process.php">Valider panier</a>
+                    <a type="submit" class="btn btn-success btn-lg btn-block" href="form_processing/cart_checkout_process.php">Valider panier</a>
                 </div>
                 <!-- /bouton pour valider le panier --> 
                               

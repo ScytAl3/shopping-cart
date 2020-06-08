@@ -73,7 +73,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                             </div>
                             <!-- /area pour afficher un message d erreur lors du login : pseudo inexistant ou erreud password -->
                             <!-- logo du site -->
-                                <img class="mt-3" src="/img/default/octopus-logo-form.png" alt="site logo" width="100" height="100">
+                                <img class="mt-3" src="img/default/octopus-logo-form.png" alt="site logo" width="100" height="100">
                             <!-- /logo du site --> 
                         </div>
                         <!-- /titre de la section du formulaire -->

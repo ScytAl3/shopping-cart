@@ -18,7 +18,7 @@
             $_SESSION['error']['page'] = 'panier';
             $_SESSION['error']['message'] = "La quantité de ". $_POST['produitNom']." est passé à ".$_POST['quantity']." !";
             // on redirige vers la page du panier
-            header('location:/../panier.php');
+            header('location:../panier.php');
             die();
         // --------------------------------------------------------------------------------
         //                                               sinon
@@ -28,7 +28,7 @@
             $_SESSION['error']['page'] = 'panier';
             $_SESSION['error']['message'] = "Problème lors de la modification de la quantité de ".$_POST['produitNom']." !";
             // on redirige vers la page du panier
-            header('location:/../panier.php');
+            header('location:../panier.php');
             die();
         }
     }

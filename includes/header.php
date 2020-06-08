@@ -1,32 +1,32 @@
 <!-- main navigation -->
 <!-- si l utilisateur est un admin bg color : red, sinon  color : dark  -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top py-0 <?=($_SESSION['current']['userRole'] == 'Admin') ?  'bg-dark' :  'navbar-custom-bg'; ?>">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top py-0 <?= ($_SESSION['current']['userRole'] == 'Admin') ?  'bg-dark' :  'navbar-custom-bg'; ?>">
     <div class="container">
         <!-- navbar brand & logo -->
-        <a class="navbar-brand text-uppercase" href="/index.php">
-        <img class="d-inline-block align-center" src="/img/header/octopus-logo.png" width="50" height="50" alt="drunken octopus logo">
-        the drunken octopus
+        <a class="navbar-brand text-uppercase" href="index.php">
+            <img class="d-inline-block align-center" src="img/header/octopus-logo.png" width="50" height="50" alt="drunken octopus logo">
+            the drunken octopus
         </a>
         <!-- /navbar brand & logo -->
         <!-- collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <!-- /collapse button -->
         <!-- collapsible content -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="/index.php">Accueil <span class="sr-only">(current)</span></a></li>
-                <li class="nav-item active"><a class="nav-link" href="/shop.php">Beers <span class="sr-only"></span></a></li>
-                <li class="nav-item active text-uppercase <?=($_SESSION['current']['userRole'] == 'Admin') ? 'visible ' : 'invisible ' ?>"><a class="nav-link" href="/admin/admin_products.php">God mod</a></li>
+                <li class="nav-item active"><a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a></li>
+                <li class="nav-item active"><a class="nav-link" href="shop.php">Beers <span class="sr-only"></span></a></li>
+                <li class="nav-item active text-uppercase <?= ($_SESSION['current']['userRole'] == 'Admin') ? 'visible ' : 'invisible ' ?>"><a class="nav-link" href="admin/admin_products.php">God mod</a></li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active <?=($_SESSION['current']['login']) ? 'visible' : 'invisible' ?>"><a class="nav-link" href="#"><?=$_SESSION['current']['userName'] ?></a></li>
-                <li class="nav-item active <?=($_SESSION['current']['login']) ? 'invisible' : 'visible' ?>"><a class="nav-link" href="/sign_up.php"><i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
-                <li class="nav-item active"><a class="nav-link" href="<?=($_SESSION['current']['login']) ? '/logout.php' : '/login.php' ?>"><i class="fa <?=($_SESSION['current']['login']) ? 'fa-sign-out' : 'fa-sign-in' ?>" aria-hidden="true"></i> <?=($_SESSION['current']['login']) ? 'Logout' : 'Login' ?></a></li>
+                <li class="nav-item active <?= ($_SESSION['current']['login']) ? 'visible' : 'invisible' ?>"><a class="nav-link" href="#"><?= $_SESSION['current']['userName'] ?></a></li>
+                <li class="nav-item active <?= ($_SESSION['current']['login']) ? 'invisible' : 'visible' ?>"><a class="nav-link" href="sign_up.php"><i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
+                <li class="nav-item active"><a class="nav-link" href="<?= ($_SESSION['current']['login']) ? 'logout.php' : 'login.php' ?>"><i class="fa <?= ($_SESSION['current']['login']) ? 'fa-sign-out' : 'fa-sign-in' ?>" aria-hidden="true"></i> <?= ($_SESSION['current']['login']) ? 'Logout' : 'Login' ?></a></li>
             </ul>
             <!-- affiche un lien vers le panier avec le nombre de produits ajoutes -->
-            <a class="btn btn-outline-success my-2 my-sm-0" href="/panier.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <strong><span class="badge badge-light badge-pill"><?=$max=sizeof($_SESSION['panier']['id_product']) ?></strong></span></a>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="panier.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <strong><span class="badge badge-light badge-pill"><?= $max = sizeof($_SESSION['panier']['id_product']) ?></strong></span></a>
         </div>
         <!-- collapsible content -->
     </div>
@@ -34,11 +34,15 @@
 <!-- header avec une image pleine en background centree verticalement -->
 <header class="my-header-bg">
     <div class="row mx-auto">
-        <div class="col-5 d-none d-lg-block line px-0"><hr></div>
-        <div class="col-2 logo mx-auto px-0">
-            <img src="/img/header/octopus_full_logo.svg" width="100" height="100" class="d-inline-block align-top" alt="header drunken octopus logo">
+        <div class="col-5 d-none d-lg-block line px-0">
+            <hr>
         </div>
-        <div class="col-5 d-none d-lg-block line px-0"><hr></div>
+        <div class="col-2 logo mx-auto px-0">
+            <img src="img/header/octopus_full_logo.svg" width="100" height="100" class="d-inline-block align-top" alt="header drunken octopus logo">
+        </div>
+        <div class="col-5 d-none d-lg-block line px-0">
+            <hr>
+        </div>
     </div>
     <div class="container h-100">
         <div class="row h-75 align-items-center">

@@ -112,7 +112,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                 <!-- on recupere les valeurs des differents champs d une ligne d un produit-->             
                 <div class="col-8 col-sm-6- col-md-5 col-lg-3 col-xl-2 card border-secondary mx-1 mb-5 py-3">
                     <!-- photo du produit -->
-                    <img class="card-img-top mx-auto" src="/img/product_pictures/<?=$productPicture ?>" alt="a product picture">
+                    <img class="card-img-top mx-auto" src="img/product_pictures/<?=$productPicture ?>" alt="a product picture">
                     <!-- /photo du produit -->
 
                     <!-- nom et description du produit -->
@@ -126,7 +126,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
                     <!-- /nom et description du produit -->
 
                     <!-- bouton pour ajouter le produit selectionne --> 
-                        <a class ="btn btn-primary" href="/form_processing/cart_add_process.php?productId=<?=$column['produitId']; ?>&productPrice=<?=$column['produitPrix']; ?>">Ajouter au panier</a>
+                        <a class ="btn btn-primary" href="form_processing/cart_add_process.php?productId=<?=$column['produitId']; ?>&productPrice=<?=$column['produitPrix']; ?>">Ajouter au panier</a>
                     <!-- /bouton pour ajouter le produit selectionne --> 
                 </div>          
                 <?php

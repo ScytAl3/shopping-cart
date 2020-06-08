@@ -13,6 +13,6 @@
      $_SESSION['error']['page'] = 'panier';
     $_SESSION['error']['message'] = "Le produit ".$_GET['productId']." a bien été supprimé votre panier !";
     // on redirige vers la page du panier des produits
-    header('location:/../panier.php');
+    header('location:../panier.php');
     die();
 ?>

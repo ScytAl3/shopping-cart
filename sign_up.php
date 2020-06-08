@@ -72,7 +72,7 @@ if ($_SESSION['current']['page'] != $_SESSION['error']['page']) {$_SESSION['erro
 					<!-- /area pour afficher un message d erreur lors de la creation -->
 					<!-- logo du site -->
 					<div class="text-center mt-3">
-						<img class="d-inline-block align-top mb-4" src="/img/default/octopus-logo-form.png" alt="site logo" width="100" height="100">
+						<img class="d-inline-block align-top mb-4" src="img/default/octopus-logo-form.png" alt="site logo" width="100" height="100">
 					</div>
 					<!-- logo du site -->
 				</div>

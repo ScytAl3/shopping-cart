@@ -17,7 +17,7 @@
         $_SESSION['error']['page'] = 'shop';
         $_SESSION['error']['message'] = "Ce produit est déjà dans votre panier !";
         // on redirige vers la page de la liste des produits
-        header('location:/../shop.php');
+        header('location:../shop.php');
         die();
     // --------------------------------------------------------------------------------
     //                                                  sinon
@@ -33,7 +33,7 @@
         $_SESSION['error']['page'] = 'shop';
         $_SESSION['error']['message'] = "Ce produit a été ajouté dans votre panier !";
         // on redirige vers la page de la liste des produits
-        header('location:/../shop.php');
+        header('location:../shop.php');
         die();
     }
 ?>

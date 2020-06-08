@@ -19,7 +19,7 @@
         $_SESSION['error']['show'] = true;
         $_SESSION['error']['message'] = "Problème lors de la création du panier !";
         // on redirige vers la page du panier
-        header('location:/../panier.php');
+        header('location:../panier.php');
         die();
     }
     //  -----------------------------------------------//---------------------------------------------------
@@ -61,5 +61,5 @@
     // on vide le panier
     vider_panier();
     // on redirige vers la page index
-    header('location:/../index.php');
+    header('location:../index.php');
 ?>

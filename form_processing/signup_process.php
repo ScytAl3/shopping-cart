@@ -23,7 +23,7 @@
             $_SESSION['error']['page'] = 'sign_up';
             $_SESSION['error']['message'] = "Cette adresse mail est déjà associée à un compte !";                                  
             // on redirige vers la page du formulaire d inscription
-            header('location:/../sign_up.php');
+            header('location: ../sign_up.php');
             exit;
         }
         // -----------------------------------------------------------------------------------------------
@@ -88,7 +88,7 @@
             // ---------------------------------------------------------------------------------
             session_unset($_SESSION['signupForm']);
             // on  redirige vers index
-            header('location: /../index.php');
+            header('location: ../index.php');
             exit();
         // ---------------------------------------------------------------------------------
         //                      sinon  - newUser = FALSE
@@ -98,7 +98,7 @@
             $_SESSION['error']['page'] = 'sign_up';
             $_SESSION['error']['message'] = "Problème lors de la création de votre compte !";
             // on redirige vers la page signup
-            header('location:/../sign_up.php');
+            header('location: ../sign_up.php');
             exit();
         }  
     // ---------------------------------------------------------------------------------
@@ -109,7 +109,7 @@
         $_SESSION['error']['page'] = 'sign_up';
         $_SESSION['error']['message'] = "Il y a eu un problème lors de l'envoi de votre formulaire !";
         // on redirige vers la page signup
-        header('location:/../sign_up.php');
+        header('location:../sign_up.php');
         exit();
     }
 ?>

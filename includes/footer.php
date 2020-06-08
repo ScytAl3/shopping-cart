@@ -12,7 +12,7 @@
                             <ul class="list-icons">
                                 <li><i class="fa fa-map-marker pr-1 text-default"></i>509 Resource Row, Chesapeake, VA 23320, USA</li>
                                 <li><i class="fa fa-phone pr-1 text-default"></i>(757) 455-0100</li>
-                                    <li><i class="fa fa-envelope-o pr-1 text-default"></i><a href="/brewery/contact-us/">Contact Us</a></li>
+                                    <li><i class="fa fa-envelope-o pr-1 text-default"></i><a href="#">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                             <ul class="list-icons">
                                 <li><i class="fa fa-map-marker pr-1 text-default"></i> 1600 Clifton Road Atlanta, GA 30329-4027, USA </li>
                                 <li><i class="fa fa-phone pr-1 text-default"></i>(800-232-4636) / 888-232-6348</li>
-                                    <li><i class="fa fa-envelope-o pr-1 text-default"></i><a href="/brewery/contact-us/">Contact Us</a></li>
+                                    <li><i class="fa fa-envelope-o pr-1 text-default"></i><a href="#">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
